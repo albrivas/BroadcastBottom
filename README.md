@@ -11,5 +11,6 @@ La aplicación consta de las siguientes partes:
 - BadgeDrawable para mostrar el número de notificaciones llegadas
 
 
-<h1>¿Como hacer que funcione?</h1>
+<h2>¿Como hacer que funcione?</h2>
+
 Crea un proyecto en Firebase y pega el json de configuracion de Cloud Messaging generado en la aplicación. Una vez hecho eso ejecuta la aplicación y obten el device_token desde la consola, buscando en el logcat Device_Token en la opción Debug. Al mandar una notificación push añade ese device token y llegará sin problemas a la aplicación
