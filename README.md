@@ -1,6 +1,6 @@
 # BroadcastBottom
 
-BroadcastBottom consiste en un pequeña aplicación que muestra el número de notificaciones push llegadas en tiempo real
+BroadcastBottom consiste en una pequeña aplicación que muestra el número de notificaciones push llegadas en tiempo real
 
 La aplicación consta de las siguientes partes:
 - Google Firebase para la recepción de Notificaciones Push
