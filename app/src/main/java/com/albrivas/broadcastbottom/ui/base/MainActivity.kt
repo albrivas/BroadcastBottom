@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.databinding.ActivityMainBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -19,6 +22,7 @@ import org.koin.androidx.viewmodel.scope.viewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
     private val viewModel: MainViewModel by lifecycleScope.viewModel(this)
     private var countNotification = 0
 
@@ -26,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater, container, false)
         setContentView(binding.root)
-        getTokenFirebase()
         instances()
+        instancesNavigation()
         observers()
     }
 
@@ -36,6 +40,14 @@ class MainActivity : AppCompatActivity() {
             viewmodel = viewModel
             lifecycleOwner = this@MainActivity
         }
+    }
+
+    private fun instancesNavigation() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 
     private fun observers() {
@@ -70,15 +82,5 @@ class MainActivity : AppCompatActivity() {
     private fun removeBadge() {
         countNotification = 0
         binding.bottomNavigation.removeBadge(R.id.navigation_alerts)
-    }
-
-    private fun getTokenFirebase() {
-        FirebaseInstanceId.getInstance()
-            .instanceId.addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful)
-                    return@OnCompleteListener
-
-                Log.d("Device_Token", task.result?.token)
-            })
     }
 }
