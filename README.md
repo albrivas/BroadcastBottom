@@ -2,7 +2,7 @@
 
 BroadcastBottom consiste en un pequeña aplicación que muestra el número de notificaciones push llegadas en tiempo real
 
-La aplicación consta de las siguientes:
+La aplicación consta de las siguientes partes:
 - Google Firebase para la recepción de Notificaciones Push
 - Broadcast Receiver para actualizar en tiempo real el número de notificaciones recibidas
 - Patron de arquitectura MVVM con DataBinding y ViewBinding
