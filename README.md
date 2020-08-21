@@ -1,4 +1,4 @@
-# BroadcastBottom
+# Broadcast BottomNavigationView
 
 BroadcastBottom consiste en una pequeña aplicación que muestra el número de notificaciones push llegadas en tiempo real
 
