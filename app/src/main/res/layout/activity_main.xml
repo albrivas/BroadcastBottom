@@ -61,7 +61,7 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:backgroundTint="@android:color/darker_gray"
+            app:backgroundTint="@color/colorBottomNavigation"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

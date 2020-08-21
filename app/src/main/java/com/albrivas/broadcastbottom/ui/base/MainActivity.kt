@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun removeBadge() {
+        countNotification = 0
         binding.bottomNavigation.removeBadge(R.id.navigation_alerts)
     }
 
