@@ -10,7 +10,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.albrivas.broadcastbottom.MainActivity
+import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.receiver.PushReceiver
 import com.google.firebase.messaging.FirebaseMessagingService

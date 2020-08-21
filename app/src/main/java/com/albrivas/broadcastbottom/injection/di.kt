@@ -1,6 +1,8 @@
 package com.albrivas.broadcastbottom.injection
 
 import android.app.Application
+import com.albrivas.broadcastbottom.ui.base.MainActivity
+import com.albrivas.broadcastbottom.ui.base.MainViewModel
 import com.albrivas.broadcastbottom.ui.home.HomeFragment
 import com.albrivas.broadcastbottom.ui.home.HomeViewModel
 import org.koin.android.ext.koin.androidContext
@@ -22,5 +24,9 @@ fun Application.initDI() {
 private val scopeModule = module {
     scope(named<HomeFragment>()) {
         viewModel { HomeViewModel() }
+    }
+
+    scope(named<MainActivity>()) {
+        viewModel { MainViewModel() }
     }
 }
