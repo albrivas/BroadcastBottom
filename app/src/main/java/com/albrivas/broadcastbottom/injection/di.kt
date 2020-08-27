@@ -7,6 +7,8 @@ import com.albrivas.broadcastbottom.ui.home.HomeFragment
 import com.albrivas.broadcastbottom.ui.home.HomeViewModel
 import com.albrivas.broadcastbottom.ui.notifications.NotificationFragment
 import com.albrivas.broadcastbottom.ui.notifications.NotificationViewModel
+import com.albrivas.broadcastbottom.ui.settings.SettingsFragment
+import com.albrivas.broadcastbottom.ui.settings.SettingsViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -34,5 +36,9 @@ private val scopeModule = module {
 
     scope(named<NotificationFragment>()) {
         viewModel { NotificationViewModel() }
+    }
+
+    scope(named<SettingsFragment>()) {
+        viewModel { SettingsViewModel() }
     }
 }
