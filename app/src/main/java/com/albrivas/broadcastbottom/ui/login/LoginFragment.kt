@@ -22,4 +22,16 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        instances()
+    }
+
+    private fun instances() {
+        binding.apply {
+            viewmodel = viewModel
+            lifecycleOwner = this@LoginFragment
+        }
+    }
+
 }

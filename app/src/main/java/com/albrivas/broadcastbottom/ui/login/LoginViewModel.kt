@@ -10,19 +10,19 @@ class LoginViewModel : ViewModel() {
         const val TAG = "TAG_LOGIN"
     }
 
-    var userName: String? = "albrivas95@outlook.es"
+    var email: String? = "albrivas95@outlook.es"
     var password: String? = "123456789"
 
-    private lateinit var mAuth: FirebaseAuth
+    private val mAuth = FirebaseAuth.getInstance()
 
     init {
         val currentUser = mAuth.currentUser
-        signInWithUserAndPassword()
     }
 
+
     fun signInWithUserAndPassword() {
-        if (!userName.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            mAuth.signInWithEmailAndPassword(userName!!, password!!).addOnCompleteListener { task ->
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            mAuth.signInWithEmailAndPassword(email!!, password!!).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
                 } else {
@@ -32,15 +32,16 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun signUpWithEmailAndPassword() {
-        if (!userName.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            mAuth.createUserWithEmailAndPassword(userName!!, password!!).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "signUpWithEmail:success")
-                } else {
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+    fun createAccount() {
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            mAuth.createUserWithEmailAndPassword(email!!, password!!)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "signUpWithEmail:success")
+                    } else {
+                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    }
                 }
-            }
         }
     }
 }
