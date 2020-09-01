@@ -11,21 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ui.base.MainActivity">
+        <activity android:name=".ui.login.LoginBaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.base.MainActivity" />
 
         <receiver
             android:name=".receiver.PushReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:permission="TODO"
+            tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="com.albrivas.broadcastbottom.CUSTOM_INTENT"/>
+                <action android:name="com.albrivas.broadcastbottom.CUSTOM_INTENT" />
             </intent-filter>
         </receiver>
 
@@ -35,12 +37,9 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-
-<!--        <meta-data-->
-<!--            android:name="com.google.firebase.messaging.default_notification_icon"-->
-<!--            android:resource="@drawable/ic_telxius_logo_png" />-->
-
+        </service> <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
+        <!-- android:resource="@drawable/ic_telxius_logo_png" /> -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />

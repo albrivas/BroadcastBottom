@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.SignUpFragment"
+        android:label="sign_up_fragment"
+        tools:layout="@layout/sign_up_fragment" />
+</navigation>
