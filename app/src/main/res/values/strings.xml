@@ -8,4 +8,11 @@
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="button_login">Login</string>
+    <string name="hint_full_name">Nombre completo</string>
+    <string name="button_create">Registrar</string>
+    <string name="label_description_sign_up">
+        Debe introducir una cuenta de correo válida,
+        en caso contrario no podrá reestablecer la contraseña
+    </string>
+    <string name="label_register">¿Ya tienes una cuenta? <i><u>Iniciar sesión</u></i></string>
 </resources>
