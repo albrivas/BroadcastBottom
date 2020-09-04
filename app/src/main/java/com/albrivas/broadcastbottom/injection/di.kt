@@ -5,6 +5,7 @@ import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.ui.base.MainViewModel
 import com.albrivas.broadcastbottom.ui.home.HomeFragment
 import com.albrivas.broadcastbottom.ui.home.HomeViewModel
+import com.albrivas.broadcastbottom.ui.login.ChooseLoginFragment
 import com.albrivas.broadcastbottom.ui.login.LoginFragment
 import com.albrivas.broadcastbottom.ui.login.LoginViewModel
 import com.albrivas.broadcastbottom.ui.login.SignUpFragment
@@ -29,6 +30,11 @@ fun Application.initDI() {
 }
 
 private val scopeModule = module {
+
+    scope(named<ChooseLoginFragment>()) {
+        viewModel { LoginViewModel() }
+    }
+
     scope(named<LoginFragment>()) {
         viewModel { LoginViewModel() }
     }

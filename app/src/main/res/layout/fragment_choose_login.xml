@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.albrivas.broadcastbottom.ui.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:context=".ui.login.ChooseLoginFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="@string/title_login"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            app:fontFamily="@font/ubuntu_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login_user"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/ubuntu_regular"
+            android:onClick="@{() -> viewmodel.navigateToLogin()}"
+            android:text="@string/choose_user_email"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:backgroundTint="@color/colorPrimary"
+            app:cornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_login"
+            tools:text="Email / Username" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login_google"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:text="@string/choose_google"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="30dp"
+            app:icon="@drawable/ic_google"
+            app:iconGravity="textStart"
+            app:iconTint="@android:color/transparent"
+            app:iconTintMode="add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_login_user"
+            app:strokeColor="@android:color/darker_gray"
+            tools:text="Google" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_login_facebook"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:text="@string/choose_facebook"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="30dp"
+            app:icon="@drawable/ic_facebook"
+            app:iconGravity="textStart"
+            app:iconTint="@android:color/transparent"
+            app:iconTintMode="add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_login_google"
+            app:strokeColor="@android:color/darker_gray"
+            tools:text="Facebook" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/link_signup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="8dp"
+            android:autoLink="web"
+            android:gravity="center"
+            app:fontFamily="@font/ubuntu_regular"
+            android:onClick="@{() -> viewmodel.navigateToSignUp()}"
+            android:text="@string/label_login"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_login_facebook" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

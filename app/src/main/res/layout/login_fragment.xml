@@ -69,10 +69,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:autoLink="web"
-                android:gravity="center"
+                android:gravity="end"
                 android:text="@string/label_forgot_password"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login"
