@@ -3,8 +3,8 @@
     <string name="title_home" translatable="false">Inicio</string>
     <string name="title_settings" translatable="false">Ajustes</string>
     <string name="title_notifications" translatable="false">Alertas</string>
-    <string name="label_login">No account yet? <i><u>Create one</u></i></string>
-    <string name="label_forgot_password"><i><u>Forgot your password?</u></i></string>
+    <string name="label_login">Don\'t have an account? <font color="#511FDC"><u>Sing Up</u></font></string>
+    <string name="label_forgot_password"><u>Forgot your password?</u></string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="button_login">Login</string>

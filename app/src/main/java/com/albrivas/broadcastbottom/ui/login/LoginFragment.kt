@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.databinding.LoginFragmentBinding
+import com.albrivas.broadcastbottom.ui.common.Event
 import com.albrivas.broadcastbottom.ui.common.toast
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
@@ -47,8 +48,15 @@ class LoginFragment : Fragment() {
 
     private fun updateUi(model: LoginViewModel.UiModel) {
         when (model) {
-            //is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignUp(model.event)
+            is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignUp(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
+        }
+    }
+
+    private fun navigateToSignUp(event: Event<String>) {
+        event.getContentIfNotHandled()?.let {
+            val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment()
+            navController.navigate(action)
         }
     }
 }
