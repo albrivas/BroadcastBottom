@@ -18,4 +18,8 @@ class LoginBaseActivity : AppCompatActivity() {
         binding = LoginBaseActivityBinding.inflate(layoutInflater, fragment_container_login, false)
         setContentView(binding.root)
     }
+
+    override fun onBackPressed() {
+
+    }
 }

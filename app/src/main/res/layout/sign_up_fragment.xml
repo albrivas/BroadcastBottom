@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title_login" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout3"
+                android:id="@+id/textInputLayout5"
                 style="@style/EditTextLogin"
                 android:layout_width="match_parent"
                 android:layout_marginStart="24dp"
@@ -66,8 +66,29 @@
                     android:id="@+id/input_name_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/login_username"
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewmodel.userName}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                style="@style/EditTextLogin"
+                android:layout_width="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/input_email_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/login_email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewmodel.email}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -83,12 +104,12 @@
                 app:passwordToggleEnabled="true">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/input_email_reg"
+                    android:id="@+id/input_pass_reg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/login_password"
                     android:inputType="textEmailAddress"
-                    android:text="@={viewmodel.email}" />
+                    android:text="@={viewmodel.password}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

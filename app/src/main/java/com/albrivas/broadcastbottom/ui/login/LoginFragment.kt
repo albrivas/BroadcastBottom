@@ -49,6 +49,7 @@ class LoginFragment : Fragment() {
     private fun updateUi(model: LoginViewModel.UiModel) {
         when (model) {
             is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignUp(model.event)
+            is LoginViewModel.UiModel.NavigateResetPassword -> navigateToResetPassword(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
         }
     }
@@ -56,6 +57,14 @@ class LoginFragment : Fragment() {
     private fun navigateToSignUp(event: Event<String>) {
         event.getContentIfNotHandled()?.let {
             val action = LoginFragmentDirections.actionLoginFragmentToSignUpFragment()
+            navController.navigate(action)
+        }
+    }
+
+    private fun navigateToResetPassword(event: Event<String>) {
+        event.getContentIfNotHandled()?.let {
+            val action =
+                LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment()
             navController.navigate(action)
         }
     }
