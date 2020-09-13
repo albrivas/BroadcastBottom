@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.albrivas.broadcastbottom.data.model.FieldType
+import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.databinding.SignUpFragmentBinding
 import com.albrivas.broadcastbottom.ui.common.Event
 import com.albrivas.broadcastbottom.ui.common.toast
@@ -52,6 +54,19 @@ class SignUpFragment : Fragment() {
             is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignIn(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
             is LoginViewModel.UiModel.NavigateSignIn -> navigateToSignIn(model.event)
+            is LoginViewModel.UiModel.ErrorFields -> validateFields(model.validatorField)
+        }
+    }
+
+    private fun validateFields(validatorField: ValidatorField) {
+        when (validatorField.fieldType) {
+            FieldType.EMAIL -> binding.inputEmailReg.error = getString(validatorField.errorMessage)
+            FieldType.PASSWORD -> binding.inputPassReg.error =
+                getString(validatorField.errorMessage)
+            FieldType.ACCOUNT -> binding.inputNameReg.error =
+                getString(validatorField.errorMessage)
+            FieldType.EMAIL_FORMATTED -> binding.inputEmailReg.error =
+                getString(validatorField.errorMessage)
         }
     }
 

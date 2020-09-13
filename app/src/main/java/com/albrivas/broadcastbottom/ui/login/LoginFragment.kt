@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.albrivas.broadcastbottom.data.model.FieldType
+import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.databinding.LoginFragmentBinding
 import com.albrivas.broadcastbottom.ui.common.Event
 import com.albrivas.broadcastbottom.ui.common.toast
@@ -51,6 +53,18 @@ class LoginFragment : Fragment() {
             is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignUp(model.event)
             is LoginViewModel.UiModel.NavigateResetPassword -> navigateToResetPassword(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
+            is LoginViewModel.UiModel.ErrorFields -> validateFields(model.validatorField)
+        }
+    }
+
+    private fun validateFields(validatorField: ValidatorField) {
+        when (validatorField.fieldType) {
+            FieldType.EMAIL -> binding.inputEmail.error = getString(validatorField.errorMessage)
+            FieldType.PASSWORD -> binding.inputPassword.error =
+                getString(validatorField.errorMessage)
+            FieldType.ACCOUNT -> { }
+            FieldType.EMAIL_FORMATTED -> binding.inputEmail.error =
+                getString(validatorField.errorMessage)
         }
     }
 

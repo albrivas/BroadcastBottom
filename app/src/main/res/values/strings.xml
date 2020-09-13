@@ -28,4 +28,6 @@
     </string>
     <string name="button_reset">Enviar</string>
     <string name="label_reset"><font color="#511FDC"><u>I have remembered my password</u></font></string>
+    <string name="error_field">Rellene el campo</string>
+    <string name="error_email">Email no válido</string>
 </resources>

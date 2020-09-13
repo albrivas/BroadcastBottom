@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.R
+import com.albrivas.broadcastbottom.data.model.FieldType
+import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.databinding.FragmentResetPasswordBinding
 import com.albrivas.broadcastbottom.ui.common.Event
 import com.albrivas.broadcastbottom.ui.common.toast
@@ -51,6 +53,16 @@ class ResetPasswordFragment : Fragment() {
         when (model) {
             is LoginViewModel.UiModel.NavigateSignIn -> navigateToSignIn(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
+            is LoginViewModel.UiModel.ErrorFields -> validateFields(model.validatorField)
+        }
+    }
+
+    private fun validateFields(validatorField: ValidatorField) {
+        when (validatorField.fieldType) {
+            FieldType.EMAIL -> binding.inputEmailReset.error = getString(validatorField.errorMessage)
+            FieldType.EMAIL_FORMATTED -> binding.inputEmailReset.error =
+                getString(validatorField.errorMessage)
+            else -> {}
         }
     }
 
