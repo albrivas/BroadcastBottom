@@ -51,4 +51,8 @@
         <item name="android:text">@string/label_forgot_password</item>
     </style>
 
+    <style name="ThemeSplash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+    </style>
+
 </resources>

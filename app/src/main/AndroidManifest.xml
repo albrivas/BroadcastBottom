@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.login.LoginBaseActivity"
+            android:theme="@style/ThemeSplash"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
