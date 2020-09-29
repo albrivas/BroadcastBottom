@@ -55,4 +55,9 @@
         <item name="android:windowBackground">@drawable/splash_drawable</item>
     </style>
 
+    <style name="ScrollVertical">
+        <item name="android:requiresFadingEdge">vertical</item>
+        <item name="android:fadingEdgeLength">100dp</item>
+    </style>
+
 </resources>

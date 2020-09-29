@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.databinding.SignUpFragmentBinding
-import com.albrivas.broadcastbottom.ui.common.Event
-import com.albrivas.broadcastbottom.ui.common.toast
+import com.albrivas.broadcastbottom.common.Event
+import com.albrivas.broadcastbottom.common.toast
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 

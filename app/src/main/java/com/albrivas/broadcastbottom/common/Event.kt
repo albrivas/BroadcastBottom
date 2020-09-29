@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.ui.common
+package com.albrivas.broadcastbottom.common
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.

@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.ui.common
+package com.albrivas.broadcastbottom.common
 
 import android.content.Context
 import android.widget.Toast
