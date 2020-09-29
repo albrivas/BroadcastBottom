@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.databinding.FragmentChooseLoginBinding
-import com.albrivas.broadcastbottom.ui.common.Event
+import com.albrivas.broadcastbottom.common.Event
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 

@@ -3,16 +3,17 @@ package com.albrivas.broadcastbottom.ui.login
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
-import com.albrivas.broadcastbottom.ui.common.Event
+import com.albrivas.broadcastbottom.common.Event
+import com.albrivas.broadcastbottom.common.base.ScopedViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : ScopedViewModel() {
 
     companion object {
         const val TAG = "TAG_LOGIN"
@@ -23,9 +24,6 @@ class LoginViewModel : ViewModel() {
     private val _model = MutableLiveData<UiModel>()
     val model: LiveData<UiModel> get() = _model
 
-    private val _loading = MutableLiveData<Boolean>()
-    val loading: LiveData<Boolean> get() = _loading
-
     var email: String? = null
     var password: String? = null
     var userName: String? = null
@@ -34,6 +32,7 @@ class LoginViewModel : ViewModel() {
         class NavigateCreateAccount(val event: Event<String>) : UiModel()
         class NavigateSignIn(val event: Event<String>) : UiModel()
         class NavigateResetPassword(val event: Event<String>) : UiModel()
+        object NavigateToHome : UiModel()
         class ErrorLogin(val exception: Exception) : UiModel()
         class ErrorFields(val validatorField: ValidatorField) : UiModel()
     }
@@ -42,14 +41,17 @@ class LoginViewModel : ViewModel() {
         val validate = validateForm(LoginType.LOGIN)
 
         if (validate.first) {
-            mAuth.signInWithEmailAndPassword(email!!, password!!).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _model.value = UiModel.NavigateCreateAccount(Event(TAG))
-                } else {
-                    task.exception?.let { exception ->
-                        _model.value = UiModel.ErrorLogin(exception)
+            launch {
+                mAuth.signInWithEmailAndPassword(email!!, password!!)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            _model.value = UiModel.NavigateToHome
+                        } else {
+                            task.exception?.let { exception ->
+                                _model.value = UiModel.ErrorLogin(exception)
+                            }
+                        }
                     }
-                }
             }
         } else {
             _model.value = UiModel.ErrorFields(validate.second)
@@ -60,17 +62,19 @@ class LoginViewModel : ViewModel() {
         val validate = validateForm(LoginType.CREATE)
 
         if (validate.first) {
-            mAuth.createUserWithEmailAndPassword(email!!, password!!)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        updateUserProfile(mAuth.currentUser)
-                        _model.value = UiModel.NavigateSignIn(Event(TAG))
-                    } else {
-                        task.exception?.let { exception ->
-                            _model.value = UiModel.ErrorLogin(exception)
+            launch {
+                mAuth.createUserWithEmailAndPassword(email!!, password!!)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            updateUserProfile(mAuth.currentUser)
+                            _model.value = UiModel.NavigateSignIn(Event(TAG))
+                        } else {
+                            task.exception?.let { exception ->
+                                _model.value = UiModel.ErrorLogin(exception)
+                            }
                         }
                     }
-                }
+            }
         } else {
             _model.value = UiModel.ErrorFields(validate.second)
         }
@@ -80,12 +84,14 @@ class LoginViewModel : ViewModel() {
         val validate = validateForm(LoginType.FORGOT)
 
         if (validate.first) {
-            mAuth.sendPasswordResetEmail(email!!).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    _model.value = UiModel.NavigateSignIn(Event(TAG))
-                } else {
-                    task.exception?.let { exception ->
-                        _model.value = UiModel.ErrorLogin(exception)
+            launch {
+                mAuth.sendPasswordResetEmail(email!!).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        _model.value = UiModel.NavigateSignIn(Event(TAG))
+                    } else {
+                        task.exception?.let { exception ->
+                            _model.value = UiModel.ErrorLogin(exception)
+                        }
                     }
                 }
             }
