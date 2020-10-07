@@ -9,15 +9,15 @@
         android:id="@+id/navigation_home"
         android:name="com.albrivas.broadcastbottom.ui.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_alerts"
         android:name="com.albrivas.broadcastbottom.ui.notifications.NotificationFragment"
         android:label="notification_fragment"
-        tools:layout="@layout/notification_fragment" />
+        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.albrivas.broadcastbottom.ui.settings.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>

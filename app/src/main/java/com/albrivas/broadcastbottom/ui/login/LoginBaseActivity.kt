@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.databinding.LoginBaseActivityBinding
-import kotlinx.android.synthetic.main.login_base_activity.*
+import kotlinx.android.synthetic.main.activity_login_base.*
 import java.util.*
 import kotlin.concurrent.schedule
 
