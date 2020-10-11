@@ -5,20 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.albrivas.broadcastbottom.databinding.NotificationFragmentBinding
+import com.albrivas.broadcastbottom.databinding.FragmentNotificationBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
 class NotificationFragment : Fragment() {
 
-    private lateinit var binding: NotificationFragmentBinding
+    private lateinit var binding: FragmentNotificationBinding
     private val viewModel: NotificationViewModel by lifecycleScope.viewModel(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = NotificationFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentNotificationBinding.inflate(inflater, container, false)
         return binding.root
     }
 

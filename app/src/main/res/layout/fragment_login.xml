@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,8 +10,10 @@
     </data>
 
     <ScrollView
+        style="@style/ScrollVertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,105 +21,105 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/title_login"
-                style="@style/TitleLogin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/title_register"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Register" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/appCompatTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/logo_image"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:text="@string/label_description_sign_up"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                app:fontFamily="@font/ubuntu_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_login" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/image_login_description"
+                app:srcCompat="@drawable/ic_logo" />
 
+            <!-- Email Label -->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout3"
+                android:id="@+id/textInputLayout"
                 style="@style/EditTextLogin"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView">
+                app:layout_constraintTop_toBottomOf="@+id/logo_image">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/input_name_reg"
+                    android:id="@+id/input_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:hint="@string/login_email"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
-                style="@style/EditTextLogin"
-                android:layout_width="match_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-                app:passwordToggleEnabled="true">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/input_email_reg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/login_password"
                     android:inputType="textEmailAddress"
                     android:text="@={viewmodel.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Password Label -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout2"
+                style="@style/EditTextLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:passwordToggleEnabled="true">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/login_password"
+                    android:inputType="textPassword"
+                    android:text="@={viewmodel.password}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_registrar"
+                android:id="@+id/btn_login"
                 style="@style/ButtonLogin"
                 android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                android:onClick="@{() -> viewmodel.createAccount()}"
-                android:text="@string/button_create"
+                android:onClick="@{() -> viewmodel.signInWithUserAndPassword()}"
+                android:text="@string/button_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/link_sign_in"
-                style="@style/SignUpLink"
-                android:layout_width="fill_parent"
+                android:id="@+id/link_forgot"
+                style="@style/ForgotPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:onClick="@{() -> viewmodel.navigateToLogin()}"
-                android:text="@string/label_register"
+                android:onClick="@{() -> viewmodel.navigateToResetPassword()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_registrar" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/link_sign_up"
+                style="@style/SignUpLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                android:onClick="@{() -> viewmodel.navigateToSignUp()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/link_forgot" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

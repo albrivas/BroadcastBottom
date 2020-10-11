@@ -5,10 +5,7 @@ import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.ui.base.MainViewModel
 import com.albrivas.broadcastbottom.ui.home.HomeFragment
 import com.albrivas.broadcastbottom.ui.home.HomeViewModel
-import com.albrivas.broadcastbottom.ui.login.ChooseLoginFragment
-import com.albrivas.broadcastbottom.ui.login.LoginFragment
-import com.albrivas.broadcastbottom.ui.login.LoginViewModel
-import com.albrivas.broadcastbottom.ui.login.SignUpFragment
+import com.albrivas.broadcastbottom.ui.login.*
 import com.albrivas.broadcastbottom.ui.notifications.NotificationFragment
 import com.albrivas.broadcastbottom.ui.notifications.NotificationViewModel
 import com.albrivas.broadcastbottom.ui.settings.SettingsFragment
@@ -40,6 +37,10 @@ private val scopeModule = module {
     }
 
     scope(named<SignUpFragment>()) {
+        viewModel { LoginViewModel() }
+    }
+
+    scope(named<ResetPasswordFragment>()) {
         viewModel { LoginViewModel() }
     }
 

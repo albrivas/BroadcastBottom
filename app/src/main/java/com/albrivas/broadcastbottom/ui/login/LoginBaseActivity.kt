@@ -2,20 +2,22 @@ package com.albrivas.broadcastbottom.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.albrivas.broadcastbottom.R
-import com.albrivas.broadcastbottom.databinding.LoginBaseActivityBinding
-import kotlinx.android.synthetic.main.login_base_activity.*
+import com.albrivas.broadcastbottom.databinding.ActivityLoginBaseBinding
+import kotlinx.android.synthetic.main.activity_login_base.*
 
 class LoginBaseActivity : AppCompatActivity() {
 
-    private lateinit var binding: LoginBaseActivityBinding
+    private lateinit var binding: ActivityLoginBaseBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.ThemeSplash)
         super.onCreate(savedInstanceState)
-        binding = LoginBaseActivityBinding.inflate(layoutInflater, fragment_container_login, false)
+        binding = ActivityLoginBaseBinding.inflate(layoutInflater, fragment_container_login, false)
         setContentView(binding.root)
+    }
+
+    override fun onBackPressed() {
+
     }
 }

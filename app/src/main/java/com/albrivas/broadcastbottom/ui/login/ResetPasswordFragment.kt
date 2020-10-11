@@ -10,15 +10,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
+import com.albrivas.broadcastbottom.databinding.FragmentResetPasswordBinding
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.toast
-import com.albrivas.broadcastbottom.databinding.FragmentSignUpBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class SignUpFragment : Fragment() {
+class ResetPasswordFragment : Fragment() {
 
-    private lateinit var binding: FragmentSignUpBinding
+    private lateinit var binding: FragmentResetPasswordBinding
     private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
     private lateinit var navController: NavController
 
@@ -26,7 +26,7 @@ class SignUpFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,7 +39,7 @@ class SignUpFragment : Fragment() {
     private fun instances() {
         binding.apply {
             viewmodel = viewModel
-            lifecycleOwner = this@SignUpFragment
+            lifecycleOwner = this@ResetPasswordFragment
         }
         navController = findNavController()
     }
@@ -48,32 +48,29 @@ class SignUpFragment : Fragment() {
         viewModel.model.observe(viewLifecycleOwner, Observer(::updateUi))
     }
 
-
     private fun updateUi(model: LoginViewModel.UiModel) {
         when (model) {
-            is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignIn(model.event)
-            is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
             is LoginViewModel.UiModel.NavigateSignIn -> navigateToSignIn(model.event)
+            is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)
             is LoginViewModel.UiModel.ErrorFields -> validateFields(model.validatorField)
         }
     }
 
     private fun validateFields(validatorField: ValidatorField) {
         when (validatorField.fieldType) {
-            FieldType.EMAIL -> binding.inputEmailReg.error = getString(validatorField.errorMessage)
-            FieldType.PASSWORD -> binding.inputPassReg.error =
+            FieldType.EMAIL -> binding.inputEmailReset.error = getString(validatorField.errorMessage)
+            FieldType.EMAIL_FORMATTED -> binding.inputEmailReset.error =
                 getString(validatorField.errorMessage)
-            FieldType.ACCOUNT -> binding.inputNameReg.error =
-                getString(validatorField.errorMessage)
-            FieldType.EMAIL_FORMATTED -> binding.inputEmailReg.error =
-                getString(validatorField.errorMessage)
+            else -> {}
         }
     }
 
     private fun navigateToSignIn(event: Event<String>) {
         event.getContentIfNotHandled()?.let {
-            val action = SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
+            val action =
+                ResetPasswordFragmentDirections.actionResetPasswordFragmentToLoginFragment()
             navController.navigate(action)
         }
     }
+
 }

@@ -11,8 +11,10 @@
     </data>
 
     <ScrollView
+        style="@style/ScrollVertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,12 +25,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_login"
+                style="@style/TitleLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                style="@style/TitleLogin"
                 android:text="@string/title_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +45,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/button_choose_user_pass_description"
                 android:onClick="@{() -> viewmodel.navigateToLogin()}"
                 android:text="@string/choose_user_email"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +61,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/button_choose_google_description"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/choose_google"
                 android:textColor="@color/colorPrimaryDark"
@@ -83,6 +87,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/button_choose_facebook_description"
                 android:fontFamily="@font/ubuntu_medium"
                 android:text="@string/choose_facebook"
                 android:textColor="@color/colorPrimaryDark"

@@ -7,6 +7,7 @@
     <string name="label_forgot_password"><u>Forgot your password?</u></string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
+    <string name="login_username">Nombre completo</string>
     <string name="button_login">Login</string>
     <string name="hint_full_name">Nombre completo</string>
     <string name="button_create">Registrar</string>
@@ -20,4 +21,20 @@
     <string name="choose_facebook">Facebook</string>
     <string name="title_login">Login</string>
     <string name="title_register">Register</string>
+    <string name="title_reset">Resetear contraseña</string>
+    <string name="label_reset_password">
+        Necesitamos su correo electronico
+        registrado para enviar las instrucciones de restablecimiento de la contraseña
+    </string>
+    <string name="button_reset">Enviar</string>
+    <string name="label_reset"><font color="#511FDC"><u>I have remembered my password</u></font></string>
+    <string name="error_field">Rellene el campo</string>
+    <string name="error_email">Email no válido</string>
+
+    <!-- Login AC-->
+    <string name="image_login_description">Logo BroadcastBottom</string>
+    <string name="button_choose_user_pass_description">Entrar con email y contraseña</string>
+    <string name="button_choose_google_description">Entrar con una cuenta de Google</string>
+    <string name="button_choose_facebook_description">Entrar con una cuenta de Facebook</string>
+
 </resources>
