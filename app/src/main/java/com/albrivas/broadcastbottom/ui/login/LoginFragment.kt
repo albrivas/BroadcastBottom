@@ -12,9 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
-import com.albrivas.broadcastbottom.databinding.LoginFragmentBinding
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.toast
+import com.albrivas.broadcastbottom.databinding.FragmentLoginBinding
 import com.albrivas.broadcastbottom.ui.base.MainActivity
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
@@ -22,14 +22,14 @@ import org.koin.androidx.viewmodel.scope.viewModel
 class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
-    private lateinit var binding: LoginFragmentBinding
+    private lateinit var binding: FragmentLoginBinding
     private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = LoginFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 

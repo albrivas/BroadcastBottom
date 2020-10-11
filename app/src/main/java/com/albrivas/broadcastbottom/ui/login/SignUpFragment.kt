@@ -10,15 +10,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
-import com.albrivas.broadcastbottom.databinding.SignUpFragmentBinding
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.toast
+import com.albrivas.broadcastbottom.databinding.FragmentSignUpBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
 class SignUpFragment : Fragment() {
 
-    private lateinit var binding: SignUpFragmentBinding
+    private lateinit var binding: FragmentSignUpBinding
     private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
     private lateinit var navController: NavController
 
@@ -26,7 +26,7 @@ class SignUpFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SignUpFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
 
