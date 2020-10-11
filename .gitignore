@@ -12,3 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+
+#commitlint
+node_modules
+package-lock.json
