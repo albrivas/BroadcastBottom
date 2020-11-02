@@ -13,6 +13,7 @@ import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.databinding.FragmentChooseLoginBinding
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseFragment
+import com.albrivas.broadcastbottom.utils.API_KEY_GOOGLE
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -68,7 +69,7 @@ class ChooseLoginFragment : BaseFragment() {
 
     private fun instancesGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(API_KEY_GOOGLE)
             .requestEmail()
             .build()
 
