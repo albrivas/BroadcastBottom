@@ -8,10 +8,8 @@ import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.ScopedViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.UserProfileChangeRequest
+import com.facebook.AccessToken
+import com.google.firebase.auth.*
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ScopedViewModel() {
@@ -39,7 +37,7 @@ class LoginViewModel : ScopedViewModel() {
     }
 
     init {
-        if(mAuth.currentUser != null)
+        if (mAuth.currentUser != null)
             _model.value = UiModel.NavigateToHome
     }
 
@@ -118,6 +116,20 @@ class LoginViewModel : ScopedViewModel() {
 
     fun signInWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
+
+        mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _model.value = UiModel.NavigateToHome
+            } else {
+                task.exception?.let { exception ->
+                    _model.value = UiModel.ErrorLogin(exception)
+                }
+            }
+        }
+    }
+
+    fun signInWithFacebook(token: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(token.token)
 
         mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
