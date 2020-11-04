@@ -152,7 +152,7 @@ class ChooseLoginFragment : BaseFragment() {
                 val account = task.getResult(ApiException::class.java)!!
                 viewModel.signInWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                Snackbar.make(binding.chooseContainer, e.message!!, Snackbar.LENGTH_SHORT)
+                Snackbar.make(binding.chooseContainer, e.message!!, Snackbar.LENGTH_SHORT).show()
             }
         } else {
             callbackManager.onActivityResult(requestCode, resultCode, data)

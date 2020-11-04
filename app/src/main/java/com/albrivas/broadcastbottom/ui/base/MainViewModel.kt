@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.installations.FirebaseInstallations
 
 class MainViewModel : ViewModel() {
 
@@ -25,12 +25,12 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getTokenFirebase() {
-        FirebaseInstanceId.getInstance()
-            .instanceId.addOnCompleteListener(OnCompleteListener { task ->
+        FirebaseInstallations.getInstance()
+            .id.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful)
                     return@OnCompleteListener
 
-                Log.d("Device_Token", task.result?.token)
+                Log.d("Device_Token", task.result.toString())
             })
     }
 }
