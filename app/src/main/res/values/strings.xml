@@ -36,5 +36,12 @@
     <string name="button_choose_user_pass_description">Entrar con email y contraseña</string>
     <string name="button_choose_google_description">Entrar con una cuenta de Google</string>
     <string name="button_choose_facebook_description">Entrar con una cuenta de Facebook</string>
+    <string name="alert_facebook_install">Es necesario tener la app de Facebook instalada</string>
+    <string name="button_snack_bar_facebook">Descargar</string>
+
+    <!-- IDS Firebase -->
+    <string name="facebook_app_id">3268637276559185</string>
+    <string name="fb_login_protocol_scheme">fb3268637276559185</string>
+
 
 </resources>

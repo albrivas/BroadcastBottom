@@ -1,25 +1,22 @@
 package com.albrivas.broadcastbottom.ui.login
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
+import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.toast
 import com.albrivas.broadcastbottom.databinding.FragmentLoginBinding
-import com.albrivas.broadcastbottom.ui.base.MainActivity
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
     private lateinit var binding: FragmentLoginBinding
@@ -84,15 +81,6 @@ class LoginFragment : Fragment() {
             val action =
                 LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment()
             navController.navigate(action)
-        }
-    }
-
-    private fun navigateToHomeActivity() {
-        activity?.let {
-            val intent = Intent(it, MainActivity::class.java)
-            startActivity(intent)
-            it.overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom)
-            it.finish()
         }
     }
 }

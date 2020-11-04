@@ -8,9 +8,8 @@ import com.albrivas.broadcastbottom.data.model.FieldType
 import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.ScopedViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
+import com.facebook.AccessToken
+import com.google.firebase.auth.*
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ScopedViewModel() {
@@ -35,6 +34,11 @@ class LoginViewModel : ScopedViewModel() {
         object NavigateToHome : UiModel()
         class ErrorLogin(val exception: Exception) : UiModel()
         class ErrorFields(val validatorField: ValidatorField) : UiModel()
+    }
+
+    init {
+        if (mAuth.currentUser != null)
+            _model.value = UiModel.NavigateToHome
     }
 
     fun signInWithUserAndPassword() {
@@ -110,6 +114,34 @@ class LoginViewModel : ScopedViewModel() {
         }
     }
 
+    fun signInWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+
+        mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _model.value = UiModel.NavigateToHome
+            } else {
+                task.exception?.let { exception ->
+                    _model.value = UiModel.ErrorLogin(exception)
+                }
+            }
+        }
+    }
+
+    fun signInWithFacebook(token: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(token.token)
+
+        mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _model.value = UiModel.NavigateToHome
+            } else {
+                task.exception?.let { exception ->
+                    _model.value = UiModel.ErrorLogin(exception)
+                }
+            }
+        }
+    }
+
     private fun validateForm(type: LoginType): Pair<Boolean, ValidatorField> {
         var isCorrect = false
         var error = 0
@@ -173,6 +205,7 @@ class LoginViewModel : ScopedViewModel() {
 
         return Pair(isCorrect, validator)
     }
+
 
     fun navigateToLogin() {
         _model.value = UiModel.NavigateSignIn(Event(TAG))
