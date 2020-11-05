@@ -1,62 +1,18 @@
 package com.albrivas.broadcastbottom.injection
 
 import android.app.Application
-import com.albrivas.broadcastbottom.ui.base.MainActivity
-import com.albrivas.broadcastbottom.ui.base.MainViewModel
-import com.albrivas.broadcastbottom.ui.home.HomeFragment
-import com.albrivas.broadcastbottom.ui.home.HomeViewModel
-import com.albrivas.broadcastbottom.ui.login.*
-import com.albrivas.broadcastbottom.ui.notifications.NotificationFragment
-import com.albrivas.broadcastbottom.ui.notifications.NotificationViewModel
-import com.albrivas.broadcastbottom.ui.settings.SettingsFragment
-import com.albrivas.broadcastbottom.ui.settings.SettingsViewModel
+import com.albrivas.broadcastbottom.injection.modules.dataModule
+import com.albrivas.broadcastbottom.injection.modules.scopeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
 
 fun Application.initDI() {
     startKoin {
         androidLogger(Level.ERROR)
         androidContext(this@initDI)
-        modules(listOf(scopeModule))
+        modules(listOf(scopeModule, dataModule))
     }
 }
 
-private val scopeModule = module {
-
-    scope(named<ChooseLoginFragment>()) {
-        viewModel { LoginViewModel() }
-    }
-
-    scope(named<LoginFragment>()) {
-        viewModel { LoginViewModel() }
-    }
-
-    scope(named<SignUpFragment>()) {
-        viewModel { LoginViewModel() }
-    }
-
-    scope(named<ResetPasswordFragment>()) {
-        viewModel { LoginViewModel() }
-    }
-
-    scope(named<HomeFragment>()) {
-        viewModel { HomeViewModel() }
-    }
-
-    scope(named<MainActivity>()) {
-        viewModel { MainViewModel() }
-    }
-
-    scope(named<NotificationFragment>()) {
-        viewModel { NotificationViewModel() }
-    }
-
-    scope(named<SettingsFragment>()) {
-        viewModel { SettingsViewModel() }
-    }
-}

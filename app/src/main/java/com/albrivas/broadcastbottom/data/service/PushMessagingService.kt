@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.service
+package com.albrivas.broadcastbottom.data.service
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -12,7 +12,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.R
-import com.albrivas.broadcastbottom.receiver.PushReceiver
+import com.albrivas.broadcastbottom.domain.receiver.PushReceiver
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

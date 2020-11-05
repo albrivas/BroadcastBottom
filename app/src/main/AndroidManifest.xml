@@ -26,7 +26,7 @@
         <activity android:name=".ui.base.MainActivity" />
 
         <receiver
-            android:name=".receiver.PushReceiver"
+            android:name="com.albrivas.broadcastbottom.domain.receiver.PushReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="TODO"
@@ -37,7 +37,7 @@
         </receiver>
 
         <service
-            android:name=".service.PushMessagingService"
+            android:name="com.albrivas.broadcastbottom.data.service.PushMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
