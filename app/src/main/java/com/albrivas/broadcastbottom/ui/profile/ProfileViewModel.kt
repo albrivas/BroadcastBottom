@@ -4,13 +4,13 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.albrivas.broadcastbottom.common.base.ScopedViewModel
-import com.albrivas.broadcastbottom.usescases.UploadImageProfile
+import com.albrivas.broadcastbottom.usescases.UserDataUC
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
-    private val uploadImage: UploadImageProfile,
+    private val userData: UserDataUC,
     private val databaseReference: StorageReference,
     private val mAuth: FirebaseAuth
 ) : ScopedViewModel() {
@@ -37,7 +37,7 @@ class ProfileViewModel(
 
     fun uploadImageProfile(uri: Uri) {
         launch {
-            uploadImage.upload(uri, uid!!) { exception, uri ->
+            userData.upload(uri, uid!!) { exception, uri ->
                 if (exception != null)
                     _model.value = UiModel.ErrorUpload(exception.message!!)
                 else {
@@ -68,7 +68,7 @@ class ProfileViewModel(
 
     private fun downloadUrlImageProfile() {
         launch {
-            uploadImage.download(uid!!) { exception, uri ->
+            userData.download(uid!!) { exception, uri ->
                 if (exception != null)
                     _model.value = UiModel.ErrorUpload(exception.message!!)
                 else {
@@ -76,5 +76,9 @@ class ProfileViewModel(
                 }
             }
         }
+    }
+
+    private fun getInformationProfile() {
+
     }
 }

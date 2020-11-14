@@ -3,7 +3,7 @@ package com.albrivas.broadcastbottom.data.repository
 import android.net.Uri
 import com.google.firebase.storage.StorageReference
 
-class UploadImageRepository(
+class UserDataRepository(
     private val databaseReference: StorageReference
 ) {
 

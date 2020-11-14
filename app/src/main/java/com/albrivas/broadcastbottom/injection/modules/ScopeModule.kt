@@ -9,7 +9,7 @@ import com.albrivas.broadcastbottom.ui.notifications.NotificationFragment
 import com.albrivas.broadcastbottom.ui.notifications.NotificationViewModel
 import com.albrivas.broadcastbottom.ui.profile.ProfileFragment
 import com.albrivas.broadcastbottom.ui.profile.ProfileViewModel
-import com.albrivas.broadcastbottom.usescases.UploadImageProfile
+import com.albrivas.broadcastbottom.usescases.UserDataUC
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -46,6 +46,6 @@ val scopeModule = module {
 
     scope(named<ProfileFragment>()) {
         viewModel { ProfileViewModel(get(), get(), get()) }
-        scoped { UploadImageProfile(get()) }
+        scoped { UserDataUC(get()) }
     }
 }

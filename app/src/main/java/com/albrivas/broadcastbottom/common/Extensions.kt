@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
+import com.albrivas.broadcastbottom.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -23,6 +24,6 @@ fun AppCompatImageView.loadLocalUrl(drawable: Int) {
 
 fun AppCompatImageView.loadUrl(uri: Uri) {
     Glide.with(context).load(uri)
-        .apply(RequestOptions().circleCrop())
+        .apply(RequestOptions().circleCrop().placeholder(R.drawable.ic_person))
         .into(this)
 }

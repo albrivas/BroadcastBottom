@@ -9,10 +9,6 @@
             name="viewmodel"
             type="com.albrivas.broadcastbottom.ui.profile.ProfileViewModel" />
 
-        <variable
-            name="photoUrl"
-            type="String" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
