@@ -1,14 +1,32 @@
 package com.albrivas.broadcastbottom.data.repository
 
 import android.net.Uri
-import com.albrivas.broadcastbottom.common.Either
-import java.lang.Exception
+import com.google.firebase.storage.StorageReference
 
-class UploadImageRepository {
+class UploadImageRepository(
+    private val databaseReference: StorageReference
+) {
 
-    suspend fun uploadImage(uri: Uri): Either<Exception, Boolean> {
+    fun uploadImage(uri: Uri, uid: String, result: (Exception?, Uri?) -> Unit) {
+        val imageProfileRef = databaseReference.child("users/$uid/profile")
 
+        imageProfileRef.putFile(uri).addOnSuccessListener {
+            it.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
+                result(null, uri)
+            }
+        }.addOnFailureListener {
+            result(it, null)
+        }
+    }
 
-        return Either.Right(true)
+    fun downloadImage(uid: String, result: (Exception?, Uri?) -> Unit) {
+        val imageProfileRef = databaseReference.child("users/$uid/profile")
+
+        imageProfileRef.downloadUrl.addOnSuccessListener { uri ->
+            result(null, uri)
+        }.addOnFailureListener {
+            result(it, null)
+        }
+
     }
 }
