@@ -45,7 +45,7 @@ val scopeModule = module {
     }
 
     scope(named<ProfileFragment>()) {
-        viewModel { ProfileViewModel(get()) }
-        scoped { UploadImageProfile(get())  }
+        viewModel { ProfileViewModel(get(), get(), get()) }
+        scoped { UploadImageProfile(get()) }
     }
 }
