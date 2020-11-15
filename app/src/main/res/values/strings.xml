@@ -43,5 +43,11 @@
     <string name="facebook_app_id">3268637276559185</string>
     <string name="fb_login_protocol_scheme">fb3268637276559185</string>
 
+    <!-- Profile -->
+    <string name="profile_name">Nombre</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_birthday">Fecha de nacimiento</string>
+    <string name="profile_phone">Teléfono</string>
+
 
 </resources>
