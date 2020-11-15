@@ -13,4 +13,7 @@ class UserDataUC(
     fun download(uid: String, result: (Exception?, Uri?) -> Unit) =
         repository.downloadImage(uid, result)
 
+    fun updateInformation(uid: String, user: HashMap<String, out Any?>, result: (Exception) -> Unit) =
+        repository.updateUserInformation(uid, user, result)
+
 }

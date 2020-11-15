@@ -4,5 +4,5 @@ import com.albrivas.broadcastbottom.data.repository.UserDataRepository
 import org.koin.dsl.module
 
 val dataModule = module {
-    factory { UserDataRepository(get()) }
+    factory { UserDataRepository(get(), get()) }
 }
