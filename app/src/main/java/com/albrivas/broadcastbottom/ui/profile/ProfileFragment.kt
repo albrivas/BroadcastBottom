@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.loadUrl
 import com.albrivas.broadcastbottom.databinding.FragmentProfileBinding
+import com.albrivas.broadcastbottom.domain.model.User
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
@@ -61,6 +62,7 @@ class ProfileFragment : BaseFragment() {
             is ProfileViewModel.UiModel.SelectImageGallery -> openGallery()
             is ProfileViewModel.UiModel.UploadSuccess -> setImageProfile(model.uri)
             is ProfileViewModel.UiModel.DownloadSuccess -> setImageProfile(model.uri)
+            is ProfileViewModel.UiModel.UserInformation -> setUserInformation(model.user)
         }
     }
 
@@ -82,6 +84,10 @@ class ProfileFragment : BaseFragment() {
 
     private fun setImageProfile(uri: Uri) {
         binding.imageProfile.loadUrl(uri)
+    }
+
+    private fun setUserInformation(user: User) {
+        binding.user = user
     }
 
 }

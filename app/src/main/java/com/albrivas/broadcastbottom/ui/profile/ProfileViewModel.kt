@@ -4,10 +4,13 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.albrivas.broadcastbottom.common.base.ScopedViewModel
+import com.albrivas.broadcastbottom.domain.model.User
+import com.albrivas.broadcastbottom.domain.model.toHasMap
 import com.albrivas.broadcastbottom.usescases.UserDataUC
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
+import java.util.*
 
 class ProfileViewModel(
     private val userData: UserDataUC,
@@ -21,10 +24,7 @@ class ProfileViewModel(
     val model: LiveData<UiModel> get() = _model
 
     init {
-        if (checkUserImageProfile())
-            getPhotoUrlProfile()
-        else
-            downloadUrlImageProfile()
+        getInformationProfile()
     }
 
     sealed class UiModel {
@@ -33,6 +33,7 @@ class ProfileViewModel(
         class UploadSuccess(val uri: Uri) : UiModel()
         class DownloadSuccess(val uri: Uri) : UiModel()
         object SelectImageGallery : UiModel()
+        class UserInformation(val user: User) : UiModel()
     }
 
     fun uploadImageProfile(uri: Uri) {
@@ -79,6 +80,26 @@ class ProfileViewModel(
     }
 
     private fun getInformationProfile() {
+        val currentUser = mAuth.currentUser
+        val user =
+            User(currentUser?.displayName, Date(), currentUser?.phoneNumber, currentUser?.email)
+        _model.value = UiModel.UserInformation(user)
+        
+        updateInformationProfile(user)
+
+        if (checkUserImageProfile())
+            getPhotoUrlProfile()
+        else
+            downloadUrlImageProfile()
 
     }
+
+    private fun updateInformationProfile(user: User) {
+        launch {
+            userData.updateInformation(uid!!, user.toHasMap()) {
+
+            }
+        }
+    }
+
 }
