@@ -1,18 +1,23 @@
 package com.albrivas.broadcastbottom.domain.model
 
-import java.util.*
-
 data class User(
+    val email: String?,
+    val birthday: String?,
     val name: String?,
-    val birthday: Date?,
-    val phone: String?,
-    val email: String?
+    val phone: String?
 )
 
 fun User.toHasMap() = hashMapOf(
-    "Nombre" to name,
+    "Email" to email,
     "Fecha de nacimiento" to birthday,
-    "Teléfono" to phone,
-    "Email" to email
+    "Nombre" to name,
+    "Teléfono" to phone
 )
+
+fun Map<String, Any?>.toUser(): User {
+    val orderBy = toSortedMap()
+    val values = orderBy.values.toList()
+
+    return User("${values[0]}", "${values[1]}", "${values[2]}", "${values[3]}")
+}
 

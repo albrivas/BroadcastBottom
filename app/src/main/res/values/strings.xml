@@ -45,9 +45,15 @@
 
     <!-- Profile -->
     <string name="profile_name">Nombre</string>
+    <string name="hint_name">Introduce tu nombre</string>
     <string name="profile_email">Email</string>
+    <string name="hint_email">Introduce tu email</string>
     <string name="profile_birthday">Fecha de nacimiento</string>
     <string name="profile_phone">Teléfono</string>
+    <string name="hint_phone">Introduce tu teléfono</string>
 
+    <!-- Alert dialog -->
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_edit">Editar</string>
 
 </resources>

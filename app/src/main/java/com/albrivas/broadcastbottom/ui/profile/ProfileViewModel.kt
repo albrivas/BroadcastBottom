@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.albrivas.broadcastbottom.common.base.ScopedViewModel
 import com.albrivas.broadcastbottom.domain.model.User
 import com.albrivas.broadcastbottom.domain.model.toHasMap
+import com.albrivas.broadcastbottom.domain.model.toUser
 import com.albrivas.broadcastbottom.usescases.UserDataUC
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 import java.util.*
@@ -15,6 +17,7 @@ import java.util.*
 class ProfileViewModel(
     private val userData: UserDataUC,
     private val databaseReference: StorageReference,
+    private val fireStoreDatabase: FirebaseFirestore,
     private val mAuth: FirebaseAuth
 ) : ScopedViewModel() {
 
@@ -24,7 +27,8 @@ class ProfileViewModel(
     val model: LiveData<UiModel> get() = _model
 
     init {
-        getInformationProfile()
+        checkUserImageProfile()
+        checkUserInformationFireStore()
     }
 
     sealed class UiModel {
@@ -35,6 +39,12 @@ class ProfileViewModel(
         object SelectImageGallery : UiModel()
         class UserInformation(val user: User) : UiModel()
     }
+
+    fun selectImage() {
+        _model.value = UiModel.SelectImageGallery
+    }
+
+    //region CALLs FIREBASE
 
     fun uploadImageProfile(uri: Uri) {
         launch {
@@ -48,23 +58,12 @@ class ProfileViewModel(
         }
     }
 
-    fun selectImage() {
-        _model.value = UiModel.SelectImageGallery
-    }
+    fun updateInformationProfile(user: User) {
+        launch {
+            userData.updateInformation(uid!!, user.toHasMap()) {
 
-    private fun getPhotoUrlProfile() {
-        val photo = mAuth.currentUser?.photoUrl
-        _model.value = UiModel.UriImageProfile(photo)
-    }
-
-    private fun checkUserImageProfile(): Boolean {
-        var isCheck = false
-        val uid = mAuth.currentUser?.uid
-        databaseReference.child("/users/$uid").listAll().addOnSuccessListener {
-            isCheck = it.items.size <= 0
+            }
         }
-
-        return isCheck
     }
 
     private fun downloadUrlImageProfile() {
@@ -79,27 +78,63 @@ class ProfileViewModel(
         }
     }
 
-    private fun getInformationProfile() {
-        val currentUser = mAuth.currentUser
-        val user =
-            User(currentUser?.displayName, Date(), currentUser?.phoneNumber, currentUser?.email)
-        _model.value = UiModel.UserInformation(user)
-        
-        updateInformationProfile(user)
+    //endregion
 
-        if (checkUserImageProfile())
-            getPhotoUrlProfile()
-        else
-            downloadUrlImageProfile()
+    //region GET INFORMATION PROFILE (IMAGE, DATA)
 
+    private fun getPhotoUrlProfile() {
+        val photo = mAuth.currentUser?.photoUrl
+        _model.value = UiModel.UriImageProfile(photo)
     }
 
-    private fun updateInformationProfile(user: User) {
-        launch {
-            userData.updateInformation(uid!!, user.toHasMap()) {
-
+    private fun getUserInformationFireStore() {
+        fireStoreDatabase.collection("users").document(uid!!).get()
+            .addOnSuccessListener { document ->
+                val userMap = document.data
+                userMap?.let { _model.value = UiModel.UserInformation(it.toUser()) }
             }
+    }
+
+    //endregion
+
+    //region CHECK INFORMATION PROFILE (IMAGE, DATA)
+
+    private fun checkUserImageProfile() {
+        val uid = mAuth.currentUser?.uid
+        databaseReference.child("/users/$uid").listAll().addOnSuccessListener {
+            if (it.items.size <= 0)
+                getPhotoUrlProfile()
+            else
+                downloadUrlImageProfile()
         }
+    }
+
+    private fun checkUserInformationFireStore() {
+        val uid = mAuth.currentUser?.uid
+
+        fireStoreDatabase.collection("users").document(uid!!).get().addOnSuccessListener {
+            if (it.exists())
+                getUserInformationFireStore()
+            else
+                updateUserWithInformationAuthFirebase()
+        }
+    }
+
+    //endregion
+
+    private fun updateUserWithInformationAuthFirebase() {
+        val currentUser = mAuth.currentUser
+
+        val user =
+            User(
+                currentUser?.email,
+                null,
+                currentUser?.displayName,
+                currentUser?.phoneNumber
+            )
+        _model.value = UiModel.UserInformation(user)
+
+        updateInformationProfile(user)
     }
 
 }

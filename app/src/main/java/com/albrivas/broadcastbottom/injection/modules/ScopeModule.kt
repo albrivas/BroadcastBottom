@@ -45,7 +45,7 @@ val scopeModule = module {
     }
 
     scope(named<ProfileFragment>()) {
-        viewModel { ProfileViewModel(get(), get(), get()) }
+        viewModel { ProfileViewModel(get(), get(), get(), get()) }
         scoped { UserDataUC(get()) }
     }
 }

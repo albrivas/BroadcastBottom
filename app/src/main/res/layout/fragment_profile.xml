@@ -66,16 +66,24 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="30"
-                            android:text="@string/profile_name" />
+                            android:text="@string/profile_email" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/labelName"
+                            android:id="@+id/labelEmail"
                             style="@style/LabelNormal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="70"
-                            android:text="@{user.name}" />
+                            android:layout_weight="60"
+                            android:text="@{user.email}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="4dp"
+                            app:srcCompat="@drawable/ic_edit"
+                            android:layout_weight="10" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -97,8 +105,47 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="70"
+                            android:layout_weight="60"
                             android:text="@{user.birthday.toString()}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="4dp"
+                            app:srcCompat="@drawable/ic_edit"
+                            android:layout_weight="10" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/LabelTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="30"
+                            android:text="@string/profile_name" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/labelName"
+                            style="@style/LabelNormal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="60"
+                            android:text="@{user.name}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="4dp"
+                            app:srcCompat="@drawable/ic_edit"
+                            android:layout_weight="10" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -120,31 +167,16 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="70"
+                            android:layout_weight="60"
                             android:text="@{user.phone}" />
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/LabelTitle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="30"
-                            android:text="@string/profile_email" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/labelEmail"
-                            style="@style/LabelNormal"
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="70"
-                            android:text="@{user.email}" />
+                            android:padding="4dp"
+                            app:srcCompat="@drawable/ic_edit"
+                            android:layout_weight="10" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
