@@ -18,7 +18,6 @@ import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.loadUrl
 import com.albrivas.broadcastbottom.databinding.FragmentProfileBinding
 import com.albrivas.broadcastbottom.domain.model.User
-import kotlinx.android.synthetic.main.alert_dialog_profile_information.*
 import kotlinx.android.synthetic.main.alert_dialog_profile_information.view.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
@@ -136,7 +135,11 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun dialogEditProfile(label: AppCompatTextView, hint: Int, inputType: Int, title: Int) {
-        val dialogLayout = layoutInflater.inflate(R.layout.alert_dialog_profile_information, null)
+        val dialogLayout = layoutInflater.inflate(
+            R.layout.alert_dialog_profile_information,
+            binding.containerProfile,
+            false
+        )
         dialogLayout.apply {
             editText.hint = getString(hint)
             editText.setText(label.text.toString())
@@ -157,24 +160,22 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun selectDateBirthday() {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val dateSetListener =
-            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, y, monthOfYear, dayOfMonth ->
                 val realMonth = monthOfYear + 1
                 val d = if (dayOfMonth < 10) "0$dayOfMonth" else "$dayOfMonth"
                 val m = if (realMonth < 10) "0$realMonth" else "$realMonth"
-                binding.labelBirth.text = "$d-$m-$year"
+                binding.labelBirth.text = getString(R.string.date_format, d, m, y.toString())
+                viewModel.updateInformationProfile(getUserView())
             }
 
         val datePicker = DatePickerDialog(requireContext(), dateSetListener, year, month, day)
-
-        val calendarDisableDates = Calendar.getInstance()
-        datePicker.datePicker.maxDate = calendarDisableDates.timeInMillis
-
+        datePicker.datePicker.maxDate = calendar.timeInMillis
         datePicker.show()
     }
 
