@@ -16,8 +16,8 @@
         android:label="notification_fragment"
         tools:layout="@layout/fragment_notification" />
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.albrivas.broadcastbottom.ui.profile.ProfileFragment"
+        android:id="@+id/navigation_settings"
+        android:name="com.albrivas.broadcastbottom.ui.settings.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -60,18 +60,4 @@
         <item name="android:fadingEdgeLength">100dp</item>
     </style>
 
-    <style name="LabelTitle" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">14sp</item>
-        <item name="android:gravity">start</item>
-        <item name="android:padding">8dp</item>
-        <item name="android:textColor">@android:color/black</item>
-        <item name="fontFamily">@font/ubuntu_medium</item>
-    </style>
-
-    <style name="LabelNormal" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">14sp</item>
-        <item name="android:gravity">start</item>
-        <item name="fontFamily">@font/ubuntu_regular</item>
-    </style>
-
 </resources>
