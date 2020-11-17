@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.receiver
+package com.albrivas.broadcastbottom.domain.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
