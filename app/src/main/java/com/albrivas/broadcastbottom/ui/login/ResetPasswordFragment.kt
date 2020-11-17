@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.albrivas.broadcastbottom.domain.model.FieldType
-import com.albrivas.broadcastbottom.domain.model.ValidatorField
+import com.albrivas.broadcastbottom.data.model.FieldType
+import com.albrivas.broadcastbottom.data.model.ValidatorField
 import com.albrivas.broadcastbottom.databinding.FragmentResetPasswordBinding
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.toast

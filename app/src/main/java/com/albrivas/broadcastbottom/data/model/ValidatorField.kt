@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.domain.model
+package com.albrivas.broadcastbottom.data.model
 
 data class ValidatorField(
     val errorMessage: Int,
