@@ -12,11 +12,13 @@ import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.databinding.FragmentResetPasswordBinding
 import com.albrivas.broadcastbottom.common.Event
+import com.albrivas.broadcastbottom.common.base.BaseFragment
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.common.toast
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class ResetPasswordFragment : Fragment() {
+class ResetPasswordFragment : BaseFragment() {
 
     private lateinit var binding: FragmentResetPasswordBinding
     private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
@@ -48,7 +50,8 @@ class ResetPasswordFragment : Fragment() {
         viewModel.model.observe(viewLifecycleOwner, Observer(::updateUi))
     }
 
-    private fun updateUi(model: LoginViewModel.UiModel) {
+    override fun updateUi(model: BaseViewModel.UiModelBase) {
+        super.updateUi(model)
         when (model) {
             is LoginViewModel.UiModel.NavigateSignIn -> navigateToSignIn(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)

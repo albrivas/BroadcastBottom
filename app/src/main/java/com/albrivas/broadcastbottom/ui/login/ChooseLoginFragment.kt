@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseFragment
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.databinding.FragmentChooseLoginBinding
 import com.albrivas.broadcastbottom.utils.API_KEY_GOOGLE
 import com.facebook.CallbackManager
@@ -118,7 +119,8 @@ class ChooseLoginFragment : BaseFragment() {
             })
     }
 
-    private fun updateUi(model: LoginViewModel.UiModel) {
+    override fun updateUi(model: BaseViewModel.UiModelBase) {
+        super.updateUi(model)
         when (model) {
             is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignUp(model.event)
             is LoginViewModel.UiModel.NavigateSignIn -> navigateToSignIn(model.event)

@@ -1,5 +1,6 @@
 package com.albrivas.broadcastbottom.ui.login
 
+import android.os.BaseBundle
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,12 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
+import com.albrivas.broadcastbottom.common.base.BaseFragment
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.common.toast
 import com.albrivas.broadcastbottom.databinding.FragmentSignUpBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSignUpBinding
     private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
@@ -49,7 +52,8 @@ class SignUpFragment : Fragment() {
     }
 
 
-    private fun updateUi(model: LoginViewModel.UiModel) {
+    override fun updateUi(model: BaseViewModel.UiModelBase) {
+        super.updateUi(model)
         when (model) {
             is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignIn(model.event)
             is LoginViewModel.UiModel.ErrorLogin -> context?.toast(model.exception.message!!)

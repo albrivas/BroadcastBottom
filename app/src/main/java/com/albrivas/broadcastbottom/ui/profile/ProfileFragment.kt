@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.common.base.BaseFragment
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.common.loadUrl
 import com.albrivas.broadcastbottom.databinding.FragmentProfileBinding
 import com.albrivas.broadcastbottom.domain.model.User
@@ -86,7 +87,8 @@ class ProfileFragment : BaseFragment() {
         }
     }
 
-    private fun updateUi(model: ProfileViewModel.UiModel) {
+    override fun updateUi(model: BaseViewModel.UiModelBase) {
+        super.updateUi(model)
         when (model) {
             is ProfileViewModel.UiModel.UriImageProfile ->
                 model.uri?.let { binding.imageProfile.loadUrl(it) }
