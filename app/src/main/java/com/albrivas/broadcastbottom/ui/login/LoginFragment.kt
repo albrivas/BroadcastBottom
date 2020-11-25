@@ -11,6 +11,7 @@ import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseFragment
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.common.toast
 import com.albrivas.broadcastbottom.databinding.FragmentLoginBinding
 import org.koin.androidx.scope.lifecycleScope
@@ -48,7 +49,8 @@ class LoginFragment : BaseFragment() {
         navController = findNavController()
     }
 
-    private fun updateUi(model: LoginViewModel.UiModel) {
+    override fun updateUi(model: BaseViewModel.UiModelBase) {
+        super.updateUi(model)
         when (model) {
             is LoginViewModel.UiModel.NavigateCreateAccount -> navigateToSignUp(model.event)
             is LoginViewModel.UiModel.NavigateResetPassword -> navigateToResetPassword(model.event)

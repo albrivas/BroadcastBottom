@@ -1,9 +1,7 @@
 package com.albrivas.broadcastbottom.ui.profile
 
 import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.albrivas.broadcastbottom.common.base.ScopedViewModel
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.domain.model.User
 import com.albrivas.broadcastbottom.domain.model.toHasMap
 import com.albrivas.broadcastbottom.domain.model.toUser
@@ -12,26 +10,22 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
-import java.util.*
 
 class ProfileViewModel(
     private val userData: UserDataUC,
     private val databaseReference: StorageReference,
     private val fireStoreDatabase: FirebaseFirestore,
     private val mAuth: FirebaseAuth
-) : ScopedViewModel() {
+) : BaseViewModel() {
 
     private val uid = mAuth.uid
-
-    private val _model = MutableLiveData<UiModel>()
-    val model: LiveData<UiModel> get() = _model
 
     init {
         checkUserImageProfile()
         checkUserInformationFireStore()
     }
 
-    sealed class UiModel {
+    sealed class UiModel: UiModelBase() {
         class UriImageProfile(val uri: Uri?) : UiModel()
         class ErrorUpload(val error: String) : UiModel()
         class UploadSuccess(val uri: Uri) : UiModel()
@@ -47,6 +41,7 @@ class ProfileViewModel(
     //region CALLs FIREBASE
 
     fun uploadImageProfile(uri: Uri) {
+        showLoading()
         launch {
             userData.upload(uri, uid!!) { exception, uri ->
                 if (exception != null)

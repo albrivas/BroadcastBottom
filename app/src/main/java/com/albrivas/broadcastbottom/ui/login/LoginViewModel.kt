@@ -1,18 +1,16 @@
 package com.albrivas.broadcastbottom.ui.login
 
 import android.util.Patterns
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
-import com.albrivas.broadcastbottom.common.base.ScopedViewModel
+import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.facebook.AccessToken
 import com.google.firebase.auth.*
 import kotlinx.coroutines.launch
 
-class LoginViewModel : ScopedViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     companion object {
         const val TAG = "TAG_LOGIN"
@@ -20,14 +18,11 @@ class LoginViewModel : ScopedViewModel() {
 
     private val mAuth = FirebaseAuth.getInstance()
 
-    private val _model = MutableLiveData<UiModel>()
-    val model: LiveData<UiModel> get() = _model
-
     var email: String? = null
     var password: String? = null
     var userName: String? = null
 
-    sealed class UiModel {
+    sealed class UiModel: UiModelBase() {
         class NavigateCreateAccount(val event: Event<String>) : UiModel()
         class NavigateSignIn(val event: Event<String>) : UiModel()
         class NavigateResetPassword(val event: Event<String>) : UiModel()
@@ -45,6 +40,7 @@ class LoginViewModel : ScopedViewModel() {
         val validate = validateForm(LoginType.LOGIN)
 
         if (validate.first) {
+            showLoading()
             launch {
                 mAuth.signInWithEmailAndPassword(email!!, password!!)
                     .addOnCompleteListener { task ->
@@ -66,6 +62,7 @@ class LoginViewModel : ScopedViewModel() {
         val validate = validateForm(LoginType.CREATE)
 
         if (validate.first) {
+            showLoading()
             launch {
                 mAuth.createUserWithEmailAndPassword(email!!, password!!)
                     .addOnCompleteListener { task ->
@@ -88,6 +85,7 @@ class LoginViewModel : ScopedViewModel() {
         val validate = validateForm(LoginType.FORGOT)
 
         if (validate.first) {
+            showLoading()
             launch {
                 mAuth.sendPasswordResetEmail(email!!).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
