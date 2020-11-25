@@ -1,8 +1,6 @@
 package com.albrivas.broadcastbottom.ui.login
 
-import android.os.BaseBundle
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

@@ -1,8 +1,6 @@
 package com.albrivas.broadcastbottom.ui.profile
 
 import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.domain.model.User
 import com.albrivas.broadcastbottom.domain.model.toHasMap
@@ -64,7 +62,6 @@ class ProfileViewModel(
     }
 
     private fun downloadUrlImageProfile() {
-        showLoading()
         launch {
             userData.download(uid!!) { exception, uri ->
                 if (exception != null)

@@ -1,8 +1,6 @@
 package com.albrivas.broadcastbottom.ui.login
 
 import android.util.Patterns
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
