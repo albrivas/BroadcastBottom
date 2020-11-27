@@ -27,7 +27,6 @@
             android:layout_width="124dp"
             android:layout_height="124dp"
             android:layout_marginTop="28dp"
-            android:onClick="@{() -> viewmodel.selectImage()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -81,9 +80,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="10"
                             android:padding="4dp"
-                            app:srcCompat="@drawable/ic_edit"
-                            android:layout_weight="10" />
+                            app:srcCompat="@drawable/ic_edit" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -112,9 +111,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="10"
                             android:padding="4dp"
-                            app:srcCompat="@drawable/ic_edit"
-                            android:layout_weight="10" />
+                            app:srcCompat="@drawable/ic_edit" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -143,9 +142,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="10"
                             android:padding="4dp"
-                            app:srcCompat="@drawable/ic_edit"
-                            android:layout_weight="10" />
+                            app:srcCompat="@drawable/ic_edit" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -174,9 +173,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:layout_weight="10"
                             android:padding="4dp"
-                            app:srcCompat="@drawable/ic_edit"
-                            android:layout_weight="10" />
+                            app:srcCompat="@drawable/ic_edit" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -187,6 +186,19 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/edit_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="89dp"
+            android:layout_marginBottom="11dp"
+            android:onClick="@{() -> viewmodel.selectImage()}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
+            app:layout_constraintEnd_toEndOf="@+id/imageProfile"
+            app:layout_constraintStart_toStartOf="@+id/imageProfile"
+            app:layout_constraintTop_toTopOf="@+id/imageProfile"
+            app:srcCompat="@drawable/ic_edit_image_profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
