@@ -4,13 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -30,7 +26,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private lateinit var navController: NavController
     private val viewModel: MainViewModel by lifecycleScope.viewModel(this)
     private var countNotification = 0
-    private lateinit var menuProfile: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,31 +113,9 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.navigation_alerts ->
                 binding.iconDelete.visibility =
                     View.VISIBLE
-
-            R.id.navigation_profile -> {
-            }
             else ->
                 binding.iconDelete.visibility =
                     View.GONE
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuProfile = menu!!
-        menuInflater.inflate(R.menu.profile_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.close_session -> {
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        val a = menu?.hasVisibleItems()
-        return false
     }
 }
