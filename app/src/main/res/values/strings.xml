@@ -52,6 +52,7 @@
     <string name="profile_phone">Teléfono</string>
     <string name="hint_phone">Introduce tu teléfono</string>
     <string name="date_format">%1$s-%2$s-%3$s</string>
+    <string name="close_session">Cerrar sesión</string>
 
     <!-- Alert dialog -->
     <string name="button_cancel">Cancelar</string>
