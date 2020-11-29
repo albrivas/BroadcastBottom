@@ -32,10 +32,16 @@ class ProfileViewModel(
         class DownloadSuccess(val uri: Uri) : UiModel()
         object SelectImageGallery : UiModel()
         class UserInformation(val user: User) : UiModel()
+        object CloseSession : UiModel()
     }
 
     fun selectImage() {
         _model.value = UiModel.SelectImageGallery
+    }
+
+    fun closeSession() {
+        mAuth.signOut()
+        _model.value = UiModel.CloseSession
     }
 
     //region CALLs FIREBASE
