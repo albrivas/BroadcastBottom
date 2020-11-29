@@ -8,9 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputType
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import com.albrivas.broadcastbottom.R
@@ -23,6 +21,7 @@ import kotlinx.android.synthetic.main.alert_dialog_profile_information.view.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import java.util.*
+import com.albrivas.broadcastbottom.ui.profile.ProfileViewModel.UiModel.*
 
 class ProfileFragment : BaseFragment() {
 
@@ -36,7 +35,7 @@ class ProfileFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -90,16 +89,17 @@ class ProfileFragment : BaseFragment() {
     override fun updateUi(model: BaseViewModel.UiModelBase) {
         super.updateUi(model)
         when (model) {
-            is ProfileViewModel.UiModel.UriImageProfile ->
+            is UriImageProfile ->
                 model.uri?.let { binding.imageProfile.loadUrl(it) }
-            is ProfileViewModel.UiModel.ErrorUpload -> showSnackBar(
+            is ErrorUpload -> showSnackBar(
                 binding.containerProfile,
                 model.error
             )
-            is ProfileViewModel.UiModel.SelectImageGallery -> openGallery()
-            is ProfileViewModel.UiModel.UploadSuccess -> setImageProfile(model.uri)
-            is ProfileViewModel.UiModel.DownloadSuccess -> setImageProfile(model.uri)
-            is ProfileViewModel.UiModel.UserInformation -> setUserInformation(model.user)
+            is SelectImageGallery -> openGallery()
+            is UploadSuccess -> setImageProfile(model.uri)
+            is DownloadSuccess -> setImageProfile(model.uri)
+            is UserInformation -> setUserInformation(model.user)
+            is CloseSession -> navigateToLoginActivity()
         }
     }
 
@@ -180,5 +180,4 @@ class ProfileFragment : BaseFragment() {
         datePicker.datePicker.maxDate = calendar.timeInMillis
         datePicker.show()
     }
-
 }

@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.common.view.LoadingDialog
 import com.albrivas.broadcastbottom.ui.base.MainActivity
+import com.albrivas.broadcastbottom.ui.login.LoginBaseActivity
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import javax.inject.Inject
 
-open class BaseFragment : Fragment() {
+open class BaseFragment() : Fragment() {
 
     private var progressBar: LoadingDialog? = null
 
@@ -20,6 +23,17 @@ open class BaseFragment : Fragment() {
             it.finish()
         }
     }
+
+    fun navigateToLoginActivity() {
+        activity?.let {
+            val intent = Intent(it, LoginBaseActivity::class.java)
+            startActivity(intent)
+            it.overridePendingTransition(R.anim.slide_out_bottom, R.anim.slide_in_bottom)
+            it.finish()
+        }
+    }
+
+
 
     fun showSnackBar(view: View, message: String) {
         Snackbar.make(
