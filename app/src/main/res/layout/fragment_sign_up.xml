@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.albrivas.broadcastbottom.ui.login.LoginViewModel" />
+            type="com.albrivas.broadcastbottom.ui.login.viewmodel.LoginViewModel" />
     </data>
 
     <ScrollView
