@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.albrivas.broadcastbottom.ui.login.LoginViewModel" />
+            type="com.albrivas.broadcastbottom.ui.login.viewmodel.LoginViewModel" />
     </data>
 
     <ScrollView
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:context=".ui.login.ChooseLoginFragment">
+            tools:context=".ui.login.choose.ChooseLoginFragment">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_login"

@@ -4,7 +4,6 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.albrivas.broadcastbottom.ui.login.LoginViewModel
 
 abstract class BaseViewModel : ViewModel(), Scope by Scope.Impl() {
 

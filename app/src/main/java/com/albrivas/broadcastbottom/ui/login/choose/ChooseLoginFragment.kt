@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.ui.login
+package com.albrivas.broadcastbottom.ui.login.choose
 
 import android.content.Intent
 import android.net.Uri
@@ -14,6 +14,7 @@ import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.databinding.FragmentChooseLoginBinding
+import com.albrivas.broadcastbottom.ui.login.viewmodel.LoginViewModel
 import com.albrivas.broadcastbottom.utils.API_KEY_GOOGLE
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback

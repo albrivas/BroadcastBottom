@@ -5,14 +5,14 @@ import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.domain.model.User
 import com.albrivas.broadcastbottom.domain.model.toHasMap
 import com.albrivas.broadcastbottom.domain.model.toUser
-import com.albrivas.broadcastbottom.usescases.UserDataUC
+import com.albrivas.broadcastbottom.usescases.UserDataUsesCase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(
-    private val userData: UserDataUC,
+    private val userData: UserDataUsesCase,
     private val databaseReference: StorageReference,
     private val fireStoreDatabase: FirebaseFirestore,
     private val mAuth: FirebaseAuth

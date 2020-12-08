@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/chooseLoginFragment"
-        android:name="com.albrivas.broadcastbottom.ui.login.ChooseLoginFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.choose.ChooseLoginFragment"
         android:label="fragment_choose_login"
         tools:layout="@layout/fragment_choose_login">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.albrivas.broadcastbottom.ui.login.LoginFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.signin.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.albrivas.broadcastbottom.ui.login.SignUpFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.signup.SignUpFragment"
         android:label="sign_up_fragment"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.albrivas.broadcastbottom.ui.login.ResetPasswordFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.reset.ResetPasswordFragment"
         android:label="ResetPasswordFragment"
         tools:layout="@layout/fragment_reset_password">
         <action
