@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        kotlin_version = "1.4.10"
+        kotlin_version = "1.4.20"
         nav_version = "2.3.0"
         koin_version = "2.1.5"
     }
@@ -21,6 +21,56 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+
+    ext {
+
+        androidLibs = [
+                core              : 'androidx.core:core-ktx:1.3.2',
+                appcompat         : 'androidx.appcompat:appcompat:1.2.0',
+                constraint        : 'androidx.constraintlayout:constraintlayout:2.0.4',
+                legacy            : 'androidx.legacy:legacy-support-v4:1.0.0',
+                lifrecycle        : 'androidx.lifecycle:lifecycle-extensions:2.2.0',
+                viewmodel         : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0',
+                navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.1',
+                navigationUi      : 'androidx.navigation:navigation-ui-ktx:2.3.1',
+                material          : 'com.google.android.material:material:1.2.1',
+                glide             : 'com.github.bumptech.glide:glide:4.11.0'
+
+        ]
+
+        kotlinLibs = [
+                stdlib    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                coroutines: 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7'
+        ]
+
+        testLibs = [
+                junit        : 'junit:junit:4.13',
+                test_junit   : 'androidx.test.ext:junit:1.1.2',
+                espresso     : 'androidx.test.espresso:espresso-core:3.3.0',
+                mockitoInline: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
+                mockito      : "org.mockito:mockito-inline:3.5.10"
+
+        ]
+
+        injectionLibs = [
+                koin        : "org.koin:koin-android:$koin_version",
+                koinScope   : "org.koin:koin-androidx-scope:$koin_version",
+                koinVM      : "org.koin:koin-androidx-viewmodel:$koin_version",
+                koinFragment: "org.koin:koin-androidx-fragment:$koin_version",
+        ]
+
+        firebaseLibs = [
+                core        : 'com.google.firebase:firebase-core:18.0.0',
+                messaging   : 'com.google.firebase:firebase-messaging:21.0.0',
+                servicesAuth: 'com.google.android.gms:play-services-auth:18.1.0',
+                googleAuth  : 'com.google.firebase:firebase-auth',
+                playServices: 'com.google.android.gms:play-services-base:17.5.0',
+                facebook    : 'com.facebook.android:facebook-login:5.15.3',
+                storage     : 'com.google.firebase:firebase-storage:19.2.0',
+                firestore   : 'com.google.firebase:firebase-firestore:22.0.0',
+                firebaseAuth: 'com.google.firebase:firebase-auth:20.0.0'
+        ]
     }
 }
 
