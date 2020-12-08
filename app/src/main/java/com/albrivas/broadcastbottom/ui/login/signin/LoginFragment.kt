@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.ui.login
+package com.albrivas.broadcastbottom.ui.login.signin
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,7 @@ import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.common.toast
 import com.albrivas.broadcastbottom.databinding.FragmentLoginBinding
+import com.albrivas.broadcastbottom.ui.login.viewmodel.LoginViewModel
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 

@@ -4,7 +4,7 @@ import android.net.Uri
 import com.albrivas.broadcastbottom.data.repository.UserDataRepository
 import java.lang.Exception
 
-class UserDataUC(
+class UserDataUsesCase(
     private val repository: UserDataRepository
 ) {
     fun upload(uri: Uri, uid: String, result: (Exception?, Uri?) -> Unit) =

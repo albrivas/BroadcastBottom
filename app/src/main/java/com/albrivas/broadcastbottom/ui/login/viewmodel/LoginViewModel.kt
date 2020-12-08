@@ -1,4 +1,4 @@
-package com.albrivas.broadcastbottom.ui.login
+package com.albrivas.broadcastbottom.ui.login.viewmodel
 
 import android.util.Patterns
 import com.albrivas.broadcastbottom.R
@@ -6,23 +6,29 @@ import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
+import com.albrivas.broadcastbottom.usescases.login.*
 import com.facebook.AccessToken
 import com.google.firebase.auth.*
 import kotlinx.coroutines.launch
 
-class LoginViewModel : BaseViewModel() {
+class LoginViewModel(
+    private val loginUseCase: LoginUseCase,
+    private val createAccountUseCase: CreateAccountUseCase,
+    private val forgotPasswordUseCase: ForgotPasswordUseCase,
+    private val loginFacebookUseCase: LoginFacebookUseCase,
+    private val loginGoogleUseCase: LoginGoogleUseCase,
+    private val mAuth: FirebaseAuth
+) : BaseViewModel() {
 
     companion object {
         const val TAG = "TAG_LOGIN"
     }
 
-    private val mAuth = FirebaseAuth.getInstance()
-
     var email: String? = null
     var password: String? = null
     var userName: String? = null
 
-    sealed class UiModel: UiModelBase() {
+    sealed class UiModel : UiModelBase() {
         class NavigateCreateAccount(val event: Event<String>) : UiModel()
         class NavigateSignIn(val event: Event<String>) : UiModel()
         class NavigateResetPassword(val event: Event<String>) : UiModel()
@@ -42,16 +48,12 @@ class LoginViewModel : BaseViewModel() {
         if (validate.first) {
             showLoading()
             launch {
-                mAuth.signInWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            _model.value = UiModel.NavigateToHome
-                        } else {
-                            task.exception?.let { exception ->
-                                _model.value = UiModel.ErrorLogin(exception)
-                            }
-                        }
-                    }
+                loginUseCase.invoke(email!!, password!!) { isSuccessful, exception ->
+                    if (isSuccessful)
+                        _model.value = UiModel.NavigateToHome
+                    else
+                        exception?.let { _model.value = UiModel.ErrorLogin(it) }
+                }
             }
         } else {
             _model.value = UiModel.ErrorFields(validate.second)
@@ -64,17 +66,13 @@ class LoginViewModel : BaseViewModel() {
         if (validate.first) {
             showLoading()
             launch {
-                mAuth.createUserWithEmailAndPassword(email!!, password!!)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            updateUserProfile(mAuth.currentUser)
-                            _model.value = UiModel.NavigateSignIn(Event(TAG))
-                        } else {
-                            task.exception?.let { exception ->
-                                _model.value = UiModel.ErrorLogin(exception)
-                            }
-                        }
-                    }
+                createAccountUseCase.invoke(email!!, password!!) { isSuccessful, exception ->
+                    if (isSuccessful) {
+                        updateUserProfile(mAuth.currentUser)
+                        _model.value = UiModel.NavigateSignIn(Event(TAG))
+                    } else
+                        exception?.let { _model.value = UiModel.ErrorLogin(it) }
+                }
             }
         } else {
             _model.value = UiModel.ErrorFields(validate.second)
@@ -87,14 +85,11 @@ class LoginViewModel : BaseViewModel() {
         if (validate.first) {
             showLoading()
             launch {
-                mAuth.sendPasswordResetEmail(email!!).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+                forgotPasswordUseCase.invoke(email!!) { isSuccessful, exception ->
+                    if (isSuccessful)
                         _model.value = UiModel.NavigateSignIn(Event(TAG))
-                    } else {
-                        task.exception?.let { exception ->
-                            _model.value = UiModel.ErrorLogin(exception)
-                        }
-                    }
+                    else
+                        exception?.let { _model.value = UiModel.ErrorLogin(exception) }
                 }
             }
         } else {
@@ -102,26 +97,15 @@ class LoginViewModel : BaseViewModel() {
         }
     }
 
-    private fun updateUserProfile(currentUser: FirebaseUser?) {
-        currentUser?.let { user ->
-            val profileUpdates = UserProfileChangeRequest.Builder()
-                .setDisplayName(userName!!)
-                .build()
-
-            user.updateProfile(profileUpdates)
-        }
-    }
-
     fun signInWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
 
-        mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                _model.value = UiModel.NavigateToHome
-            } else {
-                task.exception?.let { exception ->
-                    _model.value = UiModel.ErrorLogin(exception)
-                }
+        launch {
+            loginGoogleUseCase.invoke(credential) { isSuccessful, exception ->
+                if (isSuccessful)
+                    _model.value = UiModel.NavigateToHome
+                else
+                    exception?.let { _model.value = UiModel.ErrorLogin(exception) }
             }
         }
     }
@@ -129,13 +113,12 @@ class LoginViewModel : BaseViewModel() {
     fun signInWithFacebook(token: AccessToken) {
         val credential = FacebookAuthProvider.getCredential(token.token)
 
-        mAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                _model.value = UiModel.NavigateToHome
-            } else {
-                task.exception?.let { exception ->
-                    _model.value = UiModel.ErrorLogin(exception)
-                }
+        launch {
+            loginFacebookUseCase.invoke(credential) { isSuccessful, exception ->
+                if (isSuccessful)
+                    _model.value = UiModel.NavigateToHome
+                else
+                    exception?.let { _model.value = UiModel.ErrorLogin(exception) }
             }
         }
     }
@@ -204,6 +187,15 @@ class LoginViewModel : BaseViewModel() {
         return Pair(isCorrect, validator)
     }
 
+    private fun updateUserProfile(currentUser: FirebaseUser?) {
+        currentUser?.let { user ->
+            val profileUpdates = UserProfileChangeRequest.Builder()
+                .setDisplayName(userName!!)
+                .build()
+
+            user.updateProfile(profileUpdates)
+        }
+    }
 
     fun navigateToLogin() {
         _model.value = UiModel.NavigateSignIn(Event(TAG))
