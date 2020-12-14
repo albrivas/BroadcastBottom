@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ File: alert_dialog_profile_information.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

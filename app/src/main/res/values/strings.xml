@@ -1,3 +1,11 @@
+<!--
+  ~ File: strings.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <resources>
     <string name="app_name">BroadcastBottom</string>
     <string name="title_home" translatable="false">Inicio</string>

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  ~ File: dialog_loading.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/viewBackground"

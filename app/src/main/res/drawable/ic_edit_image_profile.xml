@@ -1,3 +1,11 @@
+<!--
+  ~ File: ic_edit_image_profile.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <vector android:height="24dp" android:viewportHeight="400"
     android:viewportWidth="400" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#16234D" android:pathData="M200,200m-200,0a200,200 0,1 1,400 0a200,200 0,1 1,-400 0"/>

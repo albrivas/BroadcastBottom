@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ File: splash_drawable.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
 
     <!-- The white background color as one in Amazon, YouTube, or Drive app -->

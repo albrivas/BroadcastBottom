@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ File: transition_left_right.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <translate android:fromXDelta="-50%p" android:toXDelta="0"
         android:duration="700"/>

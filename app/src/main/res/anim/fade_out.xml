@@ -1,3 +1,11 @@
+<!--
+  ~ File: fade_out.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <alpha
         android:duration="@android:integer/config_mediumAnimTime"
