@@ -30,7 +30,7 @@ import org.koin.dsl.module
 val scopeModule = module {
 
     scope(named<ChooseLoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
@@ -39,7 +39,7 @@ val scopeModule = module {
     }
 
     scope(named<LoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
@@ -48,7 +48,7 @@ val scopeModule = module {
     }
 
     scope(named<SignUpFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
@@ -57,7 +57,7 @@ val scopeModule = module {
     }
 
     scope(named<ResetPasswordFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
