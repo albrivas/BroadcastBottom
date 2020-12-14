@@ -14,6 +14,8 @@ import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
+import com.albrivas.broadcastbottom.data.preferencestore.PreferenceStorage
+import com.albrivas.broadcastbottom.data.preferencestore.PreferencesKey
 import com.albrivas.broadcastbottom.usescases.login.*
 import com.facebook.AccessToken
 import com.google.firebase.auth.*
@@ -25,7 +27,8 @@ class LoginViewModel(
     private val forgotPasswordUseCase: ForgotPasswordUseCase,
     private val loginFacebookUseCase: LoginFacebookUseCase,
     private val loginGoogleUseCase: LoginGoogleUseCase,
-    private val mAuth: FirebaseAuth
+    private val mAuth: FirebaseAuth,
+    private val dataStore: PreferenceStorage
 ) : BaseViewModel() {
 
     companion object {
@@ -57,9 +60,10 @@ class LoginViewModel(
             showLoading()
             launch {
                 loginUseCase.invoke(email!!, password!!) { isSuccessful, exception ->
-                    if (isSuccessful)
+                    if (isSuccessful) {
+                        saveUserInformationDataStore()
                         _model.value = UiModel.NavigateToHome
-                    else
+                    } else
                         exception?.let { _model.value = UiModel.ErrorLogin(it) }
                 }
             }
@@ -110,9 +114,10 @@ class LoginViewModel(
 
         launch {
             loginGoogleUseCase.invoke(credential) { isSuccessful, exception ->
-                if (isSuccessful)
+                if (isSuccessful) {
+                    saveUserInformationDataStore()
                     _model.value = UiModel.NavigateToHome
-                else
+                } else
                     exception?.let { _model.value = UiModel.ErrorLogin(exception) }
             }
         }
@@ -123,9 +128,10 @@ class LoginViewModel(
 
         launch {
             loginFacebookUseCase.invoke(credential) { isSuccessful, exception ->
-                if (isSuccessful)
+                if (isSuccessful) {
+                    saveUserInformationDataStore()
                     _model.value = UiModel.NavigateToHome
-                else
+                } else
                     exception?.let { _model.value = UiModel.ErrorLogin(exception) }
             }
         }
@@ -202,6 +208,16 @@ class LoginViewModel(
                 .build()
 
             user.updateProfile(profileUpdates)
+        }
+    }
+
+    private fun saveUserInformationDataStore() {
+        launch {
+            dataStore.apply {
+                storeValue(PreferencesKey.USER_NAME, mAuth.currentUser?.displayName.toString())
+                storeValue(PreferencesKey.EMAIL, mAuth.currentUser?.email.toString())
+                storeValue(PreferencesKey.PHONE, mAuth.currentUser?.phoneNumber.toString())
+            }
         }
     }
 

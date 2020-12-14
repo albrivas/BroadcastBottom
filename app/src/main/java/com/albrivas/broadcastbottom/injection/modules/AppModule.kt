@@ -10,6 +10,7 @@ package com.albrivas.broadcastbottom.injection.modules
 
 import com.albrivas.broadcastbottom.data.datasource.FirebaseDataSource
 import com.albrivas.broadcastbottom.data.datasource.LoginDataSource
+import com.albrivas.broadcastbottom.usescases.login.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
