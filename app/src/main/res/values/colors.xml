@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ File: colors.xml
+  ~ Project: BroadcastBottom
+  ~
+  ~ Created by albrivas on 14/12/2020
+  ~ Copyright © 2019 Alberto Rivas. All rights reserved.
+  -->
+
 <resources>
     <!--    <color name="colorPrimary">#1565c0</color>-->
     <!--    <color name="colorPrimaryDark">#003c8f</color>-->
