@@ -43,7 +43,8 @@ allprojects {
                 navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.1',
                 navigationUi      : 'androidx.navigation:navigation-ui-ktx:2.3.1',
                 material          : 'com.google.android.material:material:1.2.1',
-                glide             : 'com.github.bumptech.glide:glide:4.11.0'
+                glide             : 'com.github.bumptech.glide:glide:4.11.0',
+                dataStore         : 'androidx.datastore:datastore-preferences:1.0.0-alpha04'
 
         ]
 
@@ -55,9 +56,9 @@ allprojects {
         testLibs = [
                 junit        : 'junit:junit:4.13',
                 test_junit   : 'androidx.test.ext:junit:1.1.2',
-                espresso     : 'androidx.test.espresso:espresso-core:3.3.0',
-                mockitoInline: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
-                mockito      : "org.mockito:mockito-inline:3.5.10"
+                espresso     : 'androidx.test.espresso:espresso-core:3.3.0'
+//                mockitoInline: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
+//                mockito      : "org.mockito:mockito-inline:3.5.10"
 
         ]
 
