@@ -23,9 +23,9 @@ import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.common.loadUrl
+import com.albrivas.broadcastbottom.databinding.AlertDialogProfileInformationBinding
 import com.albrivas.broadcastbottom.databinding.FragmentProfileBinding
 import com.albrivas.broadcastbottom.domain.model.User
-import kotlinx.android.synthetic.main.alert_dialog_profile_information.view.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import java.util.*
@@ -145,11 +145,8 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun dialogEditProfile(label: AppCompatTextView, hint: Int, inputType: Int, title: Int) {
-        val dialogLayout = layoutInflater.inflate(
-            R.layout.alert_dialog_profile_information,
-            binding.containerProfile,
-            false
-        )
+        val dialogLayout = AlertDialogProfileInformationBinding.inflate(layoutInflater)
+
         dialogLayout.apply {
             editText.hint = getString(hint)
             editText.setText(label.text.toString())
@@ -158,7 +155,7 @@ class ProfileFragment : BaseFragment() {
 
         AlertDialog.Builder(requireContext()).apply {
             setTitle(getString(title))
-            setView(dialogLayout)
+            setView(dialogLayout.root)
             setNegativeButton(getString(R.string.button_cancel)) { dialog, _ ->
                 dialog.dismiss()
             }

@@ -15,10 +15,12 @@ import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import com.albrivas.broadcastbottom.R
-import kotlinx.android.synthetic.main.dialog_loading.*
+import com.albrivas.broadcastbottom.databinding.DialogLoadingBinding
 
 class LoadingDialog(context: Context) :
     Dialog(context, R.style.FloatingDialog) {
+
+    private lateinit var binding: DialogLoadingBinding
 
     init {
         setCancelable(false)
@@ -33,37 +35,46 @@ class LoadingDialog(context: Context) :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_loading)
+        binding = DialogLoadingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT
         )
 
-        viewBackground.startAnimation(AlphaAnimation(0f, viewBackground.alpha).apply {
-            duration = fadeInDuration
-        })
+        binding.viewBackground.startAnimation(
+            AlphaAnimation(
+                0f,
+                binding.viewBackground.alpha
+            ).apply {
+                duration = fadeInDuration
+            })
     }
 
     fun dismissWithAnimation() {
         if (!isHiding) {
             isHiding = true
-            viewBackground.startAnimation(AlphaAnimation(viewBackground.alpha, 0f).apply {
-                duration = fadeOutDuration
-                setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationRepeat(animation: Animation?) {
+            binding.viewBackground.startAnimation(
+                AlphaAnimation(
+                    binding.viewBackground.alpha,
+                    0f
+                ).apply {
+                    duration = fadeOutDuration
+                    setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationRepeat(animation: Animation?) {
 
-                    }
+                        }
 
-                    override fun onAnimationEnd(animation: Animation?) {
-                        super@LoadingDialog.dismiss()
-                        isHiding = false
-                    }
+                        override fun onAnimationEnd(animation: Animation?) {
+                            super@LoadingDialog.dismiss()
+                            isHiding = false
+                        }
 
-                    override fun onAnimationStart(animation: Animation?) {
+                        override fun onAnimationStart(animation: Animation?) {
 
-                    }
+                        }
+                    })
                 })
-            })
         }
     }
 }
