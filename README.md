@@ -10,6 +10,7 @@ La aplicación consta de las siguientes partes:
 - Koin para la inyeccion de dependencias
 
 <b>Componentes de la aplicación:</b>
+- Coroutines para realizar llamadas asincronas
 - Broadcast Receiver para actualizar en tiempo real el número de notificaciones recibidas
 - Jetpack Navigation para el flujo del login y el BottomNavigation
 - Jetpack DataStore para almacenar información del ususario 
