@@ -24,7 +24,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater, container, false)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         configureToolbar()
         instances()
