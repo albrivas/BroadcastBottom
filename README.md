@@ -16,7 +16,7 @@ La aplicación consta de las siguientes partes:
 - BadgeDrawable para mostrar el número de notificaciones llegadas
 - Glide para cargar la imagen del perfil
 
-<b>Google Firebase:</b>
+<b>Tecnologias empleadas:</b>
   - Authentication: para realizar el proceso de inicio de sesion con email/password, Google o Facebook. Posibilidad de recuperación de la contraseña o de crear una     nueva cuenta
   - FireStore: para almacenar la información del usuario
   - Storage: para almacenar la imagen de perfil que el ususario selecciona de su galeria en la pantalla de perfil
