@@ -1,4 +1,4 @@
-# Broadcast BottomNavigationView
+# Broadcast Bottom
 
 Consiste en una pequeña aplicación que muestra el número de notificaciones push llegadas en tiempo real
 
@@ -9,7 +9,7 @@ La aplicación consta de las siguientes partes:
 - Clean-Architecture (UsesCases, Repository, DataSources)
 - Koin para la inyeccion de dependencias
 
-<b>Componentes de la aplicación:</b>
+<b>Componentes:</b>
 - Coroutines para realizar llamadas asincronas
 - Broadcast Receiver para actualizar en tiempo real el número de notificaciones recibidas
 - Jetpack Navigation para el flujo del login y el BottomNavigation
