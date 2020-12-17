@@ -40,7 +40,7 @@
         <activity android:name=".ui.base.MainActivity" />
 
         <receiver
-            android:name="com.albrivas.broadcastbottom.domain.receiver.PushReceiver"
+            android:name="com.albrivas.broadcastbottom.data.receiver.PushReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="TODO"

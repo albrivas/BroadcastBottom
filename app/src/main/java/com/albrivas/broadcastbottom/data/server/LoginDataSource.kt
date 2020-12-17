@@ -2,12 +2,13 @@
  * File: LoginDataSource.kt
  * Project: BroadcastBottom
  *
- * Created by albrivas on 14/12/2020
+ * Created by albrivas on 17/12/2020
  * Copyright © 2019 Alberto Rivas. All rights reserved.
  */
 
-package com.albrivas.broadcastbottom.data.datasource
+package com.albrivas.broadcastbottom.data.server
 
+import com.albrivas.broadcastbottom.data.source.FirebaseDataSource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import java.lang.Exception

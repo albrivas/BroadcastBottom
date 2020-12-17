@@ -6,7 +6,7 @@
  * Copyright © 2019 Alberto Rivas. All rights reserved.
  */
 
-package com.albrivas.broadcastbottom.data.datasource
+package com.albrivas.broadcastbottom.data.source
 
 interface RemoteDataSource {
 }
