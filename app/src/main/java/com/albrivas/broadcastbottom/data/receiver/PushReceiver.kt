@@ -6,7 +6,7 @@
  * Copyright © 2019 Alberto Rivas. All rights reserved.
  */
 
-package com.albrivas.broadcastbottom.domain.receiver
+package com.albrivas.broadcastbottom.data.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context

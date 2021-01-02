@@ -16,6 +16,7 @@ import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.data.preferencestore.PreferenceStorage
 import com.albrivas.broadcastbottom.data.preferencestore.PreferencesKey
+import com.albrivas.broadcastbottom.data.analytics.LoginTracking
 import com.albrivas.broadcastbottom.usescases.login.*
 import com.facebook.AccessToken
 import com.google.firebase.auth.*
@@ -28,7 +29,8 @@ class LoginViewModel(
     private val loginFacebookUseCase: LoginFacebookUseCase,
     private val loginGoogleUseCase: LoginGoogleUseCase,
     private val mAuth: FirebaseAuth,
-    private val dataStore: PreferenceStorage
+    private val dataStore: PreferenceStorage,
+    private val analytics: LoginTracking
 ) : BaseViewModel() {
 
     companion object {
@@ -58,11 +60,13 @@ class LoginViewModel(
 
         if (validate.first) {
             showLoading()
+            analytics.onSignInEmailPassword()
             launch {
                 loginUseCase.invoke(email!!, password!!) { isSuccessful, exception ->
                     if (isSuccessful) {
                         saveUserInformationDataStore()
                         _model.value = UiModel.NavigateToHome
+                        analytics.onSignInEmailPassword()
                     } else
                         exception?.let { _model.value = UiModel.ErrorLogin(it) }
                 }
@@ -77,6 +81,7 @@ class LoginViewModel(
 
         if (validate.first) {
             showLoading()
+            analytics.onCreateAccount()
             launch {
                 createAccountUseCase.invoke(email!!, password!!) { isSuccessful, exception ->
                     if (isSuccessful) {
@@ -96,6 +101,7 @@ class LoginViewModel(
 
         if (validate.first) {
             showLoading()
+            analytics.onForgotPassword()
             launch {
                 forgotPasswordUseCase.invoke(email!!) { isSuccessful, exception ->
                     if (isSuccessful)
@@ -111,6 +117,7 @@ class LoginViewModel(
 
     fun signInWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
+        analytics.onSignGoogle()
 
         launch {
             loginGoogleUseCase.invoke(credential) { isSuccessful, exception ->
@@ -125,6 +132,7 @@ class LoginViewModel(
 
     fun signInWithFacebook(token: AccessToken) {
         val credential = FacebookAuthProvider.getCredential(token.token)
+        analytics.onSignInFacebook()
 
         launch {
             loginFacebookUseCase.invoke(credential) { isSuccessful, exception ->

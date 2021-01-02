@@ -6,13 +6,13 @@
  * Copyright © 2019 Alberto Rivas. All rights reserved.
  */
 
-package com.albrivas.broadcastbottom.data.repository
+package com.albrivas.broadcastbottom.data.repository.profile
 
 import android.net.Uri
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
 
-class UserDataRepository(
+class ProfileRepository(
     private val databaseReference: StorageReference,
     private val fireStoreDatabase: FirebaseFirestore,
 ) {

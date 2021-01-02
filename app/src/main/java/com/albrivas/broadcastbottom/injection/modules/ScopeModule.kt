@@ -8,6 +8,7 @@
 
 package com.albrivas.broadcastbottom.injection.modules
 
+import com.albrivas.broadcastbottom.data.analytics.LoginTracking
 import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.ui.base.MainViewModel
 import com.albrivas.broadcastbottom.ui.home.HomeFragment
@@ -30,39 +31,43 @@ import org.koin.dsl.module
 val scopeModule = module {
 
     scope(named<ChooseLoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
         scoped { LoginGoogleUseCase(get()) }
+        scoped { LoginTracking(get()) }
     }
 
     scope(named<LoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
         scoped { LoginGoogleUseCase(get()) }
+        scoped { LoginTracking(get()) }
     }
 
     scope(named<SignUpFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
         scoped { LoginGoogleUseCase(get()) }
+        scoped { LoginTracking(get()) }
     }
 
     scope(named<ResetPasswordFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
         scoped { LoginGoogleUseCase(get()) }
+        scoped { LoginTracking(get()) }
     }
 
     scope(named<HomeFragment>()) {

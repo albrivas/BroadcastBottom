@@ -9,11 +9,11 @@
 package com.albrivas.broadcastbottom.usescases
 
 import android.net.Uri
-import com.albrivas.broadcastbottom.data.repository.UserDataRepository
+import com.albrivas.broadcastbottom.data.repository.profile.ProfileRepository
 import java.lang.Exception
 
 class UserDataUsesCase(
-    private val repository: UserDataRepository
+    private val repository: ProfileRepository
 ) {
     fun upload(uri: Uri, uid: String, result: (Exception?, Uri?) -> Unit) =
         repository.uploadImage(uri, uid, result)

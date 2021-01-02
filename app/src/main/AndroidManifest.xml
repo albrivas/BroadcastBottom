@@ -11,6 +11,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.albrivas.broadcastbottom">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -40,7 +41,7 @@
         <activity android:name=".ui.base.MainActivity" />
 
         <receiver
-            android:name="com.albrivas.broadcastbottom.domain.receiver.PushReceiver"
+            android:name="com.albrivas.broadcastbottom.data.receiver.PushReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="TODO"

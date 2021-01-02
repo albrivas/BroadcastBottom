@@ -54,9 +54,9 @@ allprojects {
         ]
 
         testLibs = [
-                junit        : 'junit:junit:4.13',
-                test_junit   : 'androidx.test.ext:junit:1.1.2',
-                espresso     : 'androidx.test.espresso:espresso-core:3.3.0'
+                junit     : 'junit:junit:4.13',
+                test_junit: 'androidx.test.ext:junit:1.1.2',
+                espresso  : 'androidx.test.espresso:espresso-core:3.3.0'
 //                mockitoInline: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
 //                mockito      : "org.mockito:mockito-inline:3.5.10"
 
@@ -78,7 +78,8 @@ allprojects {
                 facebook    : 'com.facebook.android:facebook-login:5.15.3',
                 storage     : 'com.google.firebase:firebase-storage:19.2.0',
                 firestore   : 'com.google.firebase:firebase-firestore:22.0.0',
-                firebaseAuth: 'com.google.firebase:firebase-auth:20.0.0'
+                firebaseAuth: 'com.google.firebase:firebase-auth:20.0.0',
+                analytics   : 'com.google.firebase:firebase-analytics:18.0.0'
         ]
     }
 }
