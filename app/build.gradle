@@ -16,6 +16,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
+    def localPropertiesFile = rootProject.file("local.properties")
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(localPropertiesFile))
+
     defaultConfig {
         applicationId "com.albrivas.broadcastbottom"
         minSdkVersion 23
@@ -30,6 +34,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "GOOGLE_API_KEY", localProperties.getProperty("googleApiKey")
+        }
+        debug {
+            minifyEnabled false
+            buildConfigField 'String', "GOOGLE_API_KEY", localProperties.getProperty("googleApiKey")
         }
     }
 

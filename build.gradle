@@ -75,7 +75,6 @@ allprojects {
                 servicesAuth: 'com.google.android.gms:play-services-auth:18.1.0',
                 googleAuth  : 'com.google.firebase:firebase-auth',
                 playServices: 'com.google.android.gms:play-services-base:17.5.0',
-                facebook    : 'com.facebook.android:facebook-login:5.15.3',
                 storage     : 'com.google.firebase:firebase-storage:19.2.0',
                 firestore   : 'com.google.firebase:firebase-firestore:22.0.0',
                 firebaseAuth: 'com.google.firebase:firebase-auth:20.0.0',

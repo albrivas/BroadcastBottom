@@ -17,18 +17,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.albrivas.broadcastbottom.R
+import com.albrivas.broadcastbottom.BuildConfig
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
 import com.albrivas.broadcastbottom.databinding.FragmentChooseLoginBinding
 import com.albrivas.broadcastbottom.ui.login.viewmodel.LoginViewModel
-import com.albrivas.broadcastbottom.utils.API_KEY_GOOGLE
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -47,12 +41,11 @@ class ChooseLoginFragment : BaseFragment() {
     private lateinit var binding: FragmentChooseLoginBinding
     private lateinit var navController: NavController
     private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var callbackManager: CallbackManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentChooseLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -66,11 +59,6 @@ class ChooseLoginFragment : BaseFragment() {
 
     private fun actions() {
         binding.buttonLoginGoogle.setOnClickListener { signInGoogle() }
-        binding.buttonLoginFacebook.setOnClickListener {
-            if (checkFacebookInstall())
-                LoginManager.getInstance()
-                    .logInWithReadPermissions(this, listOf("public_profile", "email"))
-        }
     }
 
     private fun observers() {
@@ -85,47 +73,17 @@ class ChooseLoginFragment : BaseFragment() {
         navController = findNavController()
 
         instancesGoogle()
-        instancesFacebook()
     }
 
     private fun instancesGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(API_KEY_GOOGLE)
+            .requestIdToken(BuildConfig.GOOGLE_API_KEY)
             .requestEmail()
             .build()
 
         activity?.let {
             googleSignInClient = GoogleSignIn.getClient(it, gso)
         }
-    }
-
-    private fun instancesFacebook() {
-        callbackManager = CallbackManager.Factory.create()
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult?> {
-                override fun onSuccess(loginResult: LoginResult?) {
-                    loginResult?.let {
-                        viewModel.signInWithFacebook(it.accessToken)
-                    }
-                }
-
-                override fun onCancel() {
-                    Snackbar.make(
-                        binding.chooseContainer,
-                        "Cancel login Facebook",
-                        Snackbar.LENGTH_SHORT
-                    )
-                }
-
-                override fun onError(exception: FacebookException) {
-                    Snackbar.make(
-                        binding.chooseContainer,
-                        exception.message!!,
-                        Snackbar.LENGTH_SHORT
-                    )
-                }
-            })
     }
 
     override fun updateUi(model: BaseViewModel.UiModelBase) {
@@ -165,31 +123,6 @@ class ChooseLoginFragment : BaseFragment() {
             } catch (e: ApiException) {
                 Snackbar.make(binding.chooseContainer, e.message!!, Snackbar.LENGTH_SHORT).show()
             }
-        } else {
-            callbackManager.onActivityResult(requestCode, resultCode, data)
         }
-    }
-
-    private fun checkFacebookInstall(): Boolean {
-        val packageName = "com.facebook.katana"
-        val launchIntent =
-            context?.packageManager?.getLaunchIntentForPackage(packageName)
-
-        if (launchIntent == null) {
-            Snackbar.make(
-                binding.chooseContainer,
-                getString(R.string.alert_facebook_install),
-                Snackbar.LENGTH_SHORT
-            ).setAction(R.string.button_snack_bar_facebook) {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
-                    )
-                )
-            }.show()
-        }
-
-        return launchIntent != null
     }
 }

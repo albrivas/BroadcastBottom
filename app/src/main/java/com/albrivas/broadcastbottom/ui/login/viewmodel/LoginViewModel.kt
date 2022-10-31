@@ -18,7 +18,6 @@ import com.albrivas.broadcastbottom.data.preferencestore.PreferenceStorage
 import com.albrivas.broadcastbottom.data.preferencestore.PreferencesKey
 import com.albrivas.broadcastbottom.data.analytics.LoginTracking
 import com.albrivas.broadcastbottom.usescases.login.*
-import com.facebook.AccessToken
 import com.google.firebase.auth.*
 import kotlinx.coroutines.launch
 
@@ -121,21 +120,6 @@ class LoginViewModel(
 
         launch {
             loginGoogleUseCase.invoke(credential) { isSuccessful, exception ->
-                if (isSuccessful) {
-                    saveUserInformationDataStore()
-                    _model.value = UiModel.NavigateToHome
-                } else
-                    exception?.let { _model.value = UiModel.ErrorLogin(exception) }
-            }
-        }
-    }
-
-    fun signInWithFacebook(token: AccessToken) {
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        analytics.onSignInFacebook()
-
-        launch {
-            loginFacebookUseCase.invoke(credential) { isSuccessful, exception ->
                 if (isSuccessful) {
                     saveUserInformationDataStore()
                     _model.value = UiModel.NavigateToHome
