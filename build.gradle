@@ -19,7 +19,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath 'com.google.gms:google-services:4.3.14'
@@ -65,10 +65,6 @@ allprojects {
                 koinScope   : "org.koin:koin-androidx-scope:$koin_version",
                 koinVM      : "org.koin:koin-androidx-viewmodel:$koin_version",
                 koinFragment: "org.koin:koin-androidx-fragment:$koin_version",
-        ]
-
-        firebaseBoom = [
-                boom: 'com.google.firebase:firebase-bom:31.0.2'
         ]
 
         firebaseLibs = [
