@@ -13,8 +13,8 @@ apply plugin: "kotlin-kapt"
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    namespace 'com.albrivas.broadcastbottom'
+    compileSdkVersion 31
 
     def localPropertiesFile = rootProject.file("local.properties")
     def localProperties = new Properties()
@@ -23,7 +23,7 @@ android {
     defaultConfig {
         applicationId "com.albrivas.broadcastbottom"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -62,6 +62,7 @@ dependencies {
 
     implementation kotlinLibs.values()
     implementation androidLibs.values()
+    //implementation platform('com.google.firebase:firebase-bom:31.0.2')
     implementation testLibs.values()
     implementation firebaseLibs.values()
     implementation injectionLibs.values()

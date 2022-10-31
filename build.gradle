@@ -10,7 +10,7 @@
 buildscript {
     ext {
         kotlin_version = "1.7.10"
-        nav_version = "2.3.0"
+        nav_version = '2.5.2'
         koin_version = "2.1.5"
     }
     repositories {
@@ -19,7 +19,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:7.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath 'com.google.gms:google-services:4.3.14'
@@ -35,14 +35,14 @@ allprojects {
     ext {
 
         androidLibs = [
-                core              : 'androidx.core:core-ktx:1.3.2',
+                core              : 'androidx.core:core-ktx:1.8.0',
                 appcompat         : 'androidx.appcompat:appcompat:1.2.0',
                 constraint        : 'androidx.constraintlayout:constraintlayout:2.0.4',
                 legacy            : 'androidx.legacy:legacy-support-v4:1.0.0',
                 lifrecycle        : 'androidx.lifecycle:lifecycle-extensions:2.2.0',
                 viewmodel         : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0',
-                navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.3.1',
-                navigationUi      : 'androidx.navigation:navigation-ui-ktx:2.3.1',
+                navigationFragment: 'androidx.navigation:navigation-fragment-ktx:2.5.2',
+                navigationUi      : 'androidx.navigation:navigation-ui-ktx:2.5.2',
                 material          : 'com.google.android.material:material:1.2.1',
                 glide             : 'com.github.bumptech.glide:glide:4.11.0',
                 dataStore         : 'androidx.datastore:datastore-preferences:1.0.0-alpha04'
@@ -56,10 +56,7 @@ allprojects {
 
         testLibs = [
                 junit     : 'junit:junit:4.13',
-                test_junit: 'androidx.test.ext:junit:1.1.2',
                 espresso  : 'androidx.test.espresso:espresso-core:3.3.0'
-//                mockitoInline: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
-//                mockito      : "org.mockito:mockito-inline:3.5.10"
 
         ]
 
@@ -70,12 +67,17 @@ allprojects {
                 koinFragment: "org.koin:koin-androidx-fragment:$koin_version",
         ]
 
+        firebaseBoom = [
+                boom: 'com.google.firebase:firebase-bom:31.0.2'
+        ]
+
         firebaseLibs = [
                 core        : 'com.google.firebase:firebase-core:18.0.0',
                 messaging   : 'com.google.firebase:firebase-messaging:21.0.0',
                 servicesAuth: 'com.google.android.gms:play-services-auth:18.1.0',
                 googleAuth  : 'com.google.firebase:firebase-auth',
                 playServices: 'com.google.android.gms:play-services-base:17.5.0',
+                facebook    : 'com.facebook.android:facebook-login:5.15.3',
                 storage     : 'com.google.firebase:firebase-storage:19.2.0',
                 firestore   : 'com.google.firebase:firebase-firestore:22.0.0',
                 firebaseAuth: 'com.google.firebase:firebase-auth:20.0.0',
