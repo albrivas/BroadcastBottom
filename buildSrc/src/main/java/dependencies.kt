@@ -1,6 +1,6 @@
 object Libs {
 
-    const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.43.0"
+    const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.44.0"
     const val buildGradle = "com.android.tools.build:gradle:7.3.1"
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
     const val safeargs = "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.2"
@@ -9,17 +9,16 @@ object Libs {
     const val sonarGradle = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.4.0.2513"
     const val jacocoGradle = "org.jacoco:org.jacoco.core:0.8.8"
 
-
     object AndroidX {
         const val core = "androidx.core:core-ktx:1.8.0"
-        const val appCompat = "androidx.appcompat:appcompat:1.2.0"
-        const val constraint = "androidx.constraintlayout:constraintlayout:2.0.4"
+        const val appCompat = "androidx.appcompat:appcompat:1.5.1"
+        const val constraint = "androidx.constraintlayout:constraintlayout:2.1.4"
         const val legacy = "androidx.legacy:legacy-support-v4:1.0.0"
         const val lifeCycle = "androidx.lifecycle:lifecycle-extensions:2.2.0"
-        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:2.5.2"
         const val navigationUi = "androidx.navigation:navigation-ui-ktx:2.5.2"
-        const val material = "com.google.android.material:material:1.2.1"
+        const val material = "com.google.android.material:material:1.7.0"
         const val dataStore = "androidx.datastore:datastore-preferences:1.0.0-alpha04"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
@@ -42,18 +41,16 @@ object Libs {
 
     object Test {
 
-        object Espresso {
-            private const val version = "3.3.0"
-            const val core = "androidx.test.espresso:espresso-core:$version"
-        }
+        const val core = "androidx.test:core:1.5.0"
 
-        object Core {
-            const val core = "androidx.arch.core:core-testing:2.1.0"
+        object Espresso {
+            private const val version = "3.5.0"
+            const val espresso = "androidx.test.espresso:espresso-core:$version"
         }
 
         object JUnit {
-            private const val version = "4.13.2"
-            const val junit = "junit:junit:$version"
+            const val junit = "junit:junit:4.13.2"
+            const val test_junit = "androidx.test.ext:junit:1.1.4"
         }
 
         object Mockk {
@@ -62,13 +59,13 @@ object Libs {
         }
 
         object Turbine {
-            private const val version = "0.7.0"
+            private const val version = "0.12.1"
             const val turbine = "app.cash.turbine:turbine:$version"
         }
     }
 
     object Glide {
-        private const val version = "4.11.0"
+        private const val version = "4.14.2"
         const val glide = "com.github.bumptech.glide:glide:$version"
     }
 
@@ -101,9 +98,9 @@ object Libs {
     object Firebase {
         const val firebaseCore = "com.google.firebase:firebase-core:18.0.0"
         const val firebaseMessaging = "com.google.firebase:firebase-messaging:21.0.0"
-        const val firebaseServicesAuth = "com.google.android.gms:play-services-auth:18.1.0"
+        const val firebaseServicesAuth = "com.google.android.gms:play-services-auth:20.3.0"
         const val firebaseGoogleAuth = "com.google.firebase:firebase-auth"
-        const val firebasePlayServices = "com.google.android.gms:play-services-base:17.5.0"
+        const val firebasePlayServices = "com.google.android.gms:play-services-base:18.1.0"
         const val firebaseStorage = "com.google.firebase:firebase-storage:19.2.0"
         const val firebaseFirestore = "com.google.firebase:firebase-firestore:22.0.0"
         const val firebaseFirebaseAuth = "com.google.firebase:firebase-auth:20.0.0"
