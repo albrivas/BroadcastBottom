@@ -5,6 +5,7 @@ build/
 
 # Local configuration file (sdk path, etc)
 local.properties
+sonar.properties
 
 # Log/OS Files
 *.log
@@ -73,6 +74,7 @@ proguard/
 # Android Studio
 /*/build/
 /*/local.properties
+/*/sonar.properties
 /*/out
 /*/*/build
 /*/*/production
