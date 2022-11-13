@@ -13,12 +13,12 @@ plugins {
 
 android {
     namespace = "com.albrivas.broadcastbottom"
-    compileSdk = 31
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.albrivas.broadcastbottom"
         minSdk = 23
-        targetSdk = 31
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -105,9 +105,10 @@ dependencies {
 
     implementation(Libs.Glide.glide)
 
-//    testImplementation(Libs.Test.Core)
-//    testImplementation(Libs.Test.Espresso)
-//    testImplementation(Libs.Test.JUnit)
-//    testImplementation(Libs.Test.Mockk)
-//    testImplementation(Libs.Test.Turbine)
+    testImplementation(Libs.Test.Espresso.espresso)
+    testImplementation(Libs.Test.core)
+    testImplementation(Libs.Test.JUnit.junit)
+    androidTestImplementation(Libs.Test.JUnit.test_junit)
+    testImplementation(Libs.Test.Mockk.mockk)
+    testImplementation(Libs.Test.Turbine.turbine)
 }
