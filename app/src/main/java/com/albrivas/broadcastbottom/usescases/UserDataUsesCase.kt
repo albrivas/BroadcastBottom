@@ -10,7 +10,6 @@ package com.albrivas.broadcastbottom.usescases
 
 import android.net.Uri
 import com.albrivas.broadcastbottom.data.repository.profile.ProfileRepository
-import java.lang.Exception
 
 class UserDataUsesCase(
     private val repository: ProfileRepository

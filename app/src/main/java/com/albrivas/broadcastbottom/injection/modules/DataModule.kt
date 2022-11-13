@@ -9,8 +9,8 @@
 package com.albrivas.broadcastbottom.injection.modules
 
 import com.albrivas.broadcastbottom.data.preferencestore.PreferenceStorage
-import com.albrivas.broadcastbottom.data.repository.profile.ProfileRepository
 import com.albrivas.broadcastbottom.data.repository.login.*
+import com.albrivas.broadcastbottom.data.repository.profile.ProfileRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

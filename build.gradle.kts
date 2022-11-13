@@ -57,13 +57,13 @@ tasks.register("jacocoTestReport", JacocoReport::class) {
     }
 }
 
-fun gradleFileProperties(propertiesFileName: String) : Properties {
+fun gradleFileProperties(propertiesFileName: String): Properties {
     val properties = Properties()
     val localProperties = File(rootDir, propertiesFileName)
 
     if (localProperties.isFile) {
         java.io.InputStreamReader(
-                java.io.FileInputStream(localProperties), com.google.common.base.Charsets.UTF_8
+            java.io.FileInputStream(localProperties), com.google.common.base.Charsets.UTF_8
         ).use { reader ->
             properties.load(reader)
         }

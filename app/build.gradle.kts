@@ -10,7 +10,6 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
-
 android {
     namespace = "com.albrivas.broadcastbottom"
     compileSdk = 33

@@ -11,7 +11,6 @@ package com.albrivas.broadcastbottom.data.server
 import com.albrivas.broadcastbottom.data.source.FirebaseDataSource
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
-import java.lang.Exception
 
 class LoginDataSource(
     private val mAuth: FirebaseAuth

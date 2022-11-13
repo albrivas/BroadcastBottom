@@ -12,12 +12,10 @@ import android.app.Application
 import com.albrivas.broadcastbottom.injection.modules.appModule
 import com.albrivas.broadcastbottom.injection.modules.dataModule
 import com.albrivas.broadcastbottom.injection.modules.scopeModule
-import com.google.firebase.storage.FirebaseStorage
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import org.koin.dsl.module
 
 fun Application.initDI() {
     startKoin {

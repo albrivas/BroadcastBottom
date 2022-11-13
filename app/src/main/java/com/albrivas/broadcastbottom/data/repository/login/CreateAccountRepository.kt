@@ -9,7 +9,6 @@
 package com.albrivas.broadcastbottom.data.repository.login
 
 import com.albrivas.broadcastbottom.data.source.FirebaseDataSource
-import java.lang.Exception
 
 class CreateAccountRepository(
     private val firebaseDataSource: FirebaseDataSource

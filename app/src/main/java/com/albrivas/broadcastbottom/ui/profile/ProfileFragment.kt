@@ -16,7 +16,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.InputType
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import com.albrivas.broadcastbottom.R
@@ -26,10 +28,10 @@ import com.albrivas.broadcastbottom.common.loadUrl
 import com.albrivas.broadcastbottom.databinding.AlertDialogProfileInformationBinding
 import com.albrivas.broadcastbottom.databinding.FragmentProfileBinding
 import com.albrivas.broadcastbottom.domain.model.User
+import com.albrivas.broadcastbottom.ui.profile.ProfileViewModel.UiModel.*
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 import java.util.*
-import com.albrivas.broadcastbottom.ui.profile.ProfileViewModel.UiModel.*
 
 class ProfileFragment : BaseFragment() {
 

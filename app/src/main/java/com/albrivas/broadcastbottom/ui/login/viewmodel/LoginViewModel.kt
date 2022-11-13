@@ -10,15 +10,18 @@ package com.albrivas.broadcastbottom.ui.login.viewmodel
 
 import android.util.Patterns
 import com.albrivas.broadcastbottom.R
-import com.albrivas.broadcastbottom.domain.model.FieldType
-import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.common.Event
 import com.albrivas.broadcastbottom.common.base.BaseViewModel
+import com.albrivas.broadcastbottom.data.analytics.LoginTracking
 import com.albrivas.broadcastbottom.data.preferencestore.PreferenceStorage
 import com.albrivas.broadcastbottom.data.preferencestore.PreferencesKey
-import com.albrivas.broadcastbottom.data.analytics.LoginTracking
+import com.albrivas.broadcastbottom.domain.model.FieldType
+import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.usescases.login.*
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.coroutines.launch
 
 class LoginViewModel(

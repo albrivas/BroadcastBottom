@@ -16,8 +16,6 @@ import com.albrivas.broadcastbottom.common.view.LoadingDialog
 import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.ui.login.LoginBaseActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import javax.inject.Inject
 
 open class BaseFragment() : Fragment() {
 

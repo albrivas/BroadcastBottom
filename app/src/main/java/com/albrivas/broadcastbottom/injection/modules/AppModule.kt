@@ -8,8 +8,8 @@
 
 package com.albrivas.broadcastbottom.injection.modules
 
-import com.albrivas.broadcastbottom.data.source.FirebaseDataSource
 import com.albrivas.broadcastbottom.data.server.LoginDataSource
+import com.albrivas.broadcastbottom.data.source.FirebaseDataSource
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

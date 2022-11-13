@@ -9,7 +9,6 @@
 package com.albrivas.broadcastbottom.data.source
 
 import com.google.firebase.auth.AuthCredential
-import java.lang.Exception
 
 interface FirebaseDataSource {
     fun loginWithEmailAndPassword(

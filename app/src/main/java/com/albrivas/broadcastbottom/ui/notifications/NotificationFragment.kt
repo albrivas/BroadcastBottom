@@ -9,10 +9,10 @@
 package com.albrivas.broadcastbottom.ui.notifications
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.albrivas.broadcastbottom.databinding.FragmentNotificationBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
