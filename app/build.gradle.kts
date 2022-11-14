@@ -1,6 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
+    id("com.guardsquare.appsweep") version "latest.release"
     id("com.android.application")
     kotlin("android")
     id("androidx.navigation.safeargs")
@@ -9,6 +10,9 @@ plugins {
     id("jacoco")
     id("com.google.firebase.crashlytics")
 }
+
+val guardSquare = "appsweep.properties"
+val guardSquareProperties = gradleFileProperties(rootDir, guardSquare)
 
 android {
     namespace = "com.albrivas.broadcastbottom"
@@ -24,6 +28,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    appsweep {
+        apiKey = guardSquareProperties.getProperty("APPSWEEP_API_KEY")
+    }
 
     buildTypes {
         getByName("release") {

@@ -1,10 +1,10 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.sonarqube.gradle.SonarQubeExtension
-import java.util.Properties
 
 apply(plugin = "org.sonarqube")
 apply(plugin = "jacoco")
 apply(plugin = "com.github.ben-manes.versions")
+
 
 buildscript {
     repositories {
@@ -12,6 +12,7 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
     }
+
     dependencies {
         classpath(Libs.buildGradle)
         classpath(Libs.kotlinPlugin)
@@ -40,7 +41,7 @@ fun isNonStable(version: String): Boolean {
     return isStable.not()
 }
 
-tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+tasks.withType<DependencyUpdatesTask> {
     rejectVersionIf {
         isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
@@ -57,25 +58,11 @@ tasks.register("jacocoTestReport", JacocoReport::class) {
     }
 }
 
-fun gradleFileProperties(propertiesFileName: String): Properties {
-    val properties = Properties()
-    val localProperties = File(rootDir, propertiesFileName)
-
-    if (localProperties.isFile) {
-        java.io.InputStreamReader(
-            java.io.FileInputStream(localProperties), com.google.common.base.Charsets.UTF_8
-        ).use { reader ->
-            properties.load(reader)
-        }
-    }
-    return properties
-}
-
 // region Sonarqube Configuration
 
 val sonarQubeExtension = project.extensions.getByName("sonarqube") as SonarQubeExtension
 val sonarqubeFile = "sonar.properties"
-val sonarProperties = gradleFileProperties(sonarqubeFile)
+val sonarProperties = gradleFileProperties(rootDir, sonarqubeFile)
 
 sonarQubeExtension.properties {
     property("sonar.projectName", sonarProperties.getProperty("projectName"))
