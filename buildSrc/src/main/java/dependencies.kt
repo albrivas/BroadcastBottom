@@ -23,6 +23,15 @@ object Libs {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
 
+        object Compose {
+            const val ui = "androidx.compose.ui:ui:1.3.1"
+            const val material = "androidx.compose.material:material:1.3.1"
+            const val material3 = "androidx.compose.material3:material3:1.0.1"
+            const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+            const val activity = "androidx.activity:activity-compose:1.6.1"
+            const val preview = "androidx.compose.ui:ui-tooling-preview:1.3.1"
+        }
+
         object Navigation {
             private const val version = "2.5.2"
             const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
@@ -53,6 +62,12 @@ object Libs {
             const val test_junit = "androidx.test.ext:junit:1.1.4"
         }
 
+        object Compose {
+            const val uiTest = "androidx.compose.ui:ui-test-junit4:1.3.1"
+            const val uiTooling = "androidx.compose.ui:ui-tooling:1.3.1"
+            const val manifest = "androidx.compose.ui:ui-test-manifest:1.3.1"
+        }
+
         object Mockk {
             private const val version = "1.12.4"
             const val mockk = "io.mockk:mockk:$version"
@@ -67,6 +82,10 @@ object Libs {
     object Glide {
         private const val version = "4.14.2"
         const val glide = "com.github.bumptech.glide:glide:$version"
+    }
+
+    object Coil {
+        const val coil = "io.coil-kt:coil-compose:2.2.1"
     }
 
     object Arrow {

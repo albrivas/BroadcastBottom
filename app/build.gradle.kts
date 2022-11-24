@@ -110,6 +110,7 @@ dependencies {
     implementation(Libs.Firebase.firebaseAnalytics)
 
     implementation(Libs.Glide.glide)
+    implementation(Libs.Coil.coil)
 
     testImplementation(Libs.Test.Espresso.espresso)
     testImplementation(Libs.Test.core)
@@ -117,4 +118,15 @@ dependencies {
     androidTestImplementation(Libs.Test.JUnit.test_junit)
     testImplementation(Libs.Test.Mockk.mockk)
     testImplementation(Libs.Test.Turbine.turbine)
+
+    // Jetpack Compose
+    implementation(Libs.AndroidX.Compose.ui)
+    implementation(Libs.AndroidX.Compose.runtime)
+    implementation(Libs.AndroidX.Compose.material)
+    implementation(Libs.AndroidX.Compose.material3)
+    implementation(Libs.AndroidX.Compose.activity)
+    implementation(Libs.AndroidX.Compose.preview)
+    androidTestImplementation(Libs.Test.Compose.uiTest)
+    debugImplementation(Libs.Test.Compose.uiTooling)
+    debugImplementation(Libs.Test.Compose.manifest)
 }
