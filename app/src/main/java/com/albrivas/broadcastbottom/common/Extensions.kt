@@ -12,6 +12,10 @@ import android.content.Context
 import android.net.Uri
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.fragment.app.Fragment
 import com.albrivas.broadcastbottom.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -34,4 +38,13 @@ fun AppCompatImageView.loadUrl(uri: Uri) {
     Glide.with(context).load(uri)
         .apply(RequestOptions().circleCrop().placeholder(R.drawable.ic_person))
         .into(this)
+}
+
+fun Fragment.composeView(content: @Composable () -> Unit): ComposeView {
+    return ComposeView(requireContext()).apply {
+        setContent {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            content()
+        }
+    }
 }
