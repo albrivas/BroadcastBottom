@@ -18,4 +18,5 @@
     <color name="colorAccent2">#EA8014</color>
     <color name="lightBackground">#E3EAEE</color>
     <color name="colorBottomNavigation">#E3EAEE</color>
+    <color name="white">#FFFFFF</color>
 </resources>
