@@ -33,7 +33,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             isDebuggable = false
             proguardFiles(
@@ -46,7 +46,7 @@ android {
                 gradleLocalProperties(rootDir).getProperty("googleApiKey")
             )
         }
-        getByName("debug") {
+        debug {
             isMinifyEnabled = false
             isDebuggable = true
             proguardFiles(
@@ -90,6 +90,8 @@ android {
 dependencies {
 
     implementation(fileTree("libs") { include(listOf("*.jar")) })
+
+    implementation(project(":uikit"))
 
     implementation(Libs.AndroidX.core)
     implementation(Libs.AndroidX.appCompat)

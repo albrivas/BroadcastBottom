@@ -8,3 +8,4 @@
 
 include ':app'
 rootProject.name = "BroadcastBottom"
+include ':uikit'
