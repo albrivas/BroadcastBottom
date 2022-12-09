@@ -1,13 +1,7 @@
-/*
- * File: FirebaseDataSource.kt
- * Project: BroadcastBottom
- *
- * Created by albrivas on 14/12/2020
- * Copyright © 2019 Alberto Rivas. All rights reserved.
- */
-
 package com.albrivas.broadcastbottom.data.source
 
+import androidx.activity.result.IntentSenderRequest
+import arrow.core.Either
 import com.google.firebase.auth.AuthCredential
 
 interface FirebaseDataSource {
@@ -33,8 +27,11 @@ interface FirebaseDataSource {
         result: (Boolean, Exception?) -> Unit
     )
 
-    fun loginGoogle(
-        credential: AuthCredential,
-        result: (Boolean, Exception?) -> Unit
-    )
+    suspend fun loginFirebase(
+        credential: AuthCredential
+    ): Either<Exception, Unit>
+
+    suspend fun oneTapSignInWithGoogle(): Either<Exception, IntentSenderRequest>
+
+    suspend fun signUpWithGoogle(): Either<Exception, IntentSenderRequest>
 }

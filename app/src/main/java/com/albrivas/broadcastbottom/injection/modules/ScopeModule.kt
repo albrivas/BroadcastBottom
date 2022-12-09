@@ -1,11 +1,3 @@
-/*
- * File: ScopeModule.kt
- * Project: BroadcastBottom
- *
- * Created by albrivas on 14/12/2020
- * Copyright © 2019 Alberto Rivas. All rights reserved.
- */
-
 package com.albrivas.broadcastbottom.injection.modules
 
 import com.albrivas.broadcastbottom.data.analytics.LoginTracking
@@ -13,7 +5,8 @@ import com.albrivas.broadcastbottom.ui.base.MainActivity
 import com.albrivas.broadcastbottom.ui.base.MainViewModel
 import com.albrivas.broadcastbottom.ui.home.HomeFragment
 import com.albrivas.broadcastbottom.ui.home.HomeViewModel
-import com.albrivas.broadcastbottom.ui.login.choose.ChooseLoginFragment
+import com.albrivas.broadcastbottom.ui.login.choose.ChooseLoginView
+import com.albrivas.broadcastbottom.ui.login.choose.ChooseLoginViewModel
 import com.albrivas.broadcastbottom.ui.login.reset.ResetPasswordFragment
 import com.albrivas.broadcastbottom.ui.login.signin.LoginFragment
 import com.albrivas.broadcastbottom.ui.login.signup.SignUpFragment
@@ -30,43 +23,41 @@ import org.koin.dsl.module
 
 val scopeModule = module {
 
-    scope(named<ChooseLoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
-        scoped { LoginUseCase(get()) }
-        scoped { CreateAccountUseCase(get()) }
-        scoped { ForgotPasswordUseCase(get()) }
+    scope(named<ChooseLoginView>()) {
+        viewModel { ChooseLoginViewModel(get(), get(), get()) }
         scoped { LoginFacebookUseCase(get()) }
-        scoped { LoginGoogleUseCase(get()) }
+        scoped { GetGoogleIntentSenderUseCase(get()) }
+        scoped { LoginFirebaseUseCase(get()) }
         scoped { LoginTracking(get()) }
     }
 
     scope(named<LoginFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
-        scoped { LoginGoogleUseCase(get()) }
+        scoped { GetGoogleIntentSenderUseCase(get()) }
         scoped { LoginTracking(get()) }
     }
 
     scope(named<SignUpFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
-        scoped { LoginGoogleUseCase(get()) }
+        scoped { GetGoogleIntentSenderUseCase(get()) }
         scoped { LoginTracking(get()) }
     }
 
     scope(named<ResetPasswordFragment>()) {
-        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get(), get(), get(), get(), get(), get()) }
         scoped { LoginUseCase(get()) }
         scoped { CreateAccountUseCase(get()) }
         scoped { ForgotPasswordUseCase(get()) }
         scoped { LoginFacebookUseCase(get()) }
-        scoped { LoginGoogleUseCase(get()) }
+        scoped { GetGoogleIntentSenderUseCase(get()) }
         scoped { LoginTracking(get()) }
     }
 

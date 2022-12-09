@@ -16,9 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.albrivas.broadcastbottom.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 fun Context.toast(message: String) {
     Toast.makeText(
@@ -45,6 +51,18 @@ fun Fragment.composeView(content: @Composable () -> Unit): ComposeView {
         setContent {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             content()
+        }
+    }
+}
+
+fun <T> LifecycleOwner.launchAndCollect(
+    flow: Flow<T>,
+    state: Lifecycle.State = Lifecycle.State.STARTED,
+    body: (T) -> Unit
+) {
+    lifecycleScope.launch {
+        this@launchAndCollect.repeatOnLifecycle(state) {
+            flow.collect(body)
         }
     }
 }
