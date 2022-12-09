@@ -29,7 +29,6 @@ class LoginViewModel(
     private val createAccountUseCase: CreateAccountUseCase,
     private val forgotPasswordUseCase: ForgotPasswordUseCase,
     private val loginFacebookUseCase: LoginFacebookUseCase,
-    private val loginGoogleUseCase: LoginGoogleUseCase,
     private val mAuth: FirebaseAuth,
     private val dataStore: PreferenceStorage,
     private val analytics: LoginTracking
@@ -114,21 +113,6 @@ class LoginViewModel(
             }
         } else {
             _model.value = UiModel.ErrorFields(validate.second)
-        }
-    }
-
-    fun signInWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        analytics.onSignGoogle()
-
-        launch {
-            loginGoogleUseCase.invoke(credential) { isSuccessful, exception ->
-                if (isSuccessful) {
-                    saveUserInformationDataStore()
-                    _model.value = UiModel.NavigateToHome
-                } else
-                    exception?.let { _model.value = UiModel.ErrorLogin(exception) }
-            }
         }
     }
 
