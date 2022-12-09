@@ -22,6 +22,7 @@ object Libs {
         const val dataStore = "androidx.datastore:datastore-preferences:1.0.0-alpha04"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
+        const val coroutinesGoogleServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4"
 
         object Compose {
             const val ui = "androidx.compose.ui:ui:1.3.1"
@@ -123,6 +124,7 @@ object Libs {
         const val firebaseStorage = "com.google.firebase:firebase-storage:19.2.0"
         const val firebaseFirestore = "com.google.firebase:firebase-firestore:22.0.0"
         const val firebaseFirebaseAuth = "com.google.firebase:firebase-auth:20.0.0"
+        const val firebaseAuthKtx = "com.google.firebase:firebase-auth-ktx:21.0.2"
         const val firebaseAnalytics = "com.google.firebase:firebase-analytics:18.0.0"
     }
 

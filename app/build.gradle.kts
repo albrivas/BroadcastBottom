@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.ApplicationBuildType
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
@@ -42,8 +43,8 @@ android {
             )
             buildConfigField(
                 "String",
-                "GOOGLE_API_KEY",
-                gradleLocalProperties(rootDir).getProperty("googleApiKey")
+                "WEB_CLIENT_ID",
+                gradleLocalProperties(rootDir).getProperty("webClientId")
             )
         }
         debug {
@@ -55,8 +56,8 @@ android {
             )
             buildConfigField(
                 "String",
-                "GOOGLE_API_KEY",
-                gradleLocalProperties(rootDir).getProperty("googleApiKey")
+                "WEB_CLIENT_ID",
+                gradleLocalProperties(rootDir).getProperty("webClientId")
             )
         }
     }
@@ -105,11 +106,14 @@ dependencies {
     implementation(Libs.AndroidX.dataStore)
     implementation(Libs.AndroidX.stdlib)
     implementation(Libs.AndroidX.coroutines)
+    implementation(Libs.AndroidX.coroutinesGoogleServices)
 
     implementation(Libs.Koin.koin)
     implementation(Libs.Koin.koinVM)
     implementation(Libs.Koin.koinFragment)
     implementation(Libs.Koin.koinScope)
+
+    implementation(Libs.GoogleService.services)
 
     implementation(Libs.Firebase.firebaseCore)
     implementation(Libs.Firebase.firebaseMessaging)
@@ -121,9 +125,12 @@ dependencies {
     implementation(Libs.Firebase.firebaseFirestore)
     implementation(Libs.Firebase.firebaseFirebaseAuth)
     implementation(Libs.Firebase.firebaseAnalytics)
+    implementation(Libs.Firebase.firebaseAuthKtx)
 
     implementation(Libs.Glide.glide)
     implementation(Libs.Coil.coil)
+
+    implementation(Libs.Arrow.core)
 
     testImplementation(Libs.Test.Espresso.espresso)
     testImplementation(Libs.Test.core)
