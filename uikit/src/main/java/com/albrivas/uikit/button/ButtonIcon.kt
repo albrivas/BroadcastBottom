@@ -36,12 +36,12 @@ fun ButtonChooseLogin(
         onClick = { onClickAction(context) },
         shape = CircleShape,
         modifier = Modifier
-            .height(70.dp)
+            .height(60.dp)
             .fillMaxWidth(),
         colors = androidx.compose.material.ButtonDefaults.buttonColors(
-            backgroundColor = getColorByLoginType(type)
+            backgroundColor = getColorBackgroundButton(type)
         ),
-        border = BorderStroke(0.dp, getColorByLoginType(type))
+        border = BorderStroke(0.dp, getColorBorderButton(type))
     ) {
         IconButtonChooseLogin(type = type)
         if (type != LoginTypeModel.USER_PASS)
@@ -65,8 +65,7 @@ fun IconButtonChooseLogin(type: LoginTypeModel) {
             modifier = Modifier.size(ButtonDefaults.IconSize),
             tint = Color.Unspecified
         )
-        else -> { /* Nothing here */
-        }
+        else -> { /* Nothing here */ }
     }
 }
 
@@ -84,11 +83,18 @@ fun TextButtonChooseLogin(type: LoginTypeModel, @StringRes textButton: Int) {
     }
 }
 
-private fun getColorByLoginType(type: LoginTypeModel): Color {
+private fun getColorBackgroundButton(type: LoginTypeModel): Color {
     return if (type == LoginTypeModel.USER_PASS)
         BluePrimary
     else
         Color.White
+}
+
+private fun getColorBorderButton(type: LoginTypeModel): Color {
+    return if (type == LoginTypeModel.USER_PASS)
+        BluePrimary
+    else
+        Color.DarkGray
 }
 
 @Preview(

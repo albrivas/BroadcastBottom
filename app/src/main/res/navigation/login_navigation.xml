@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/chooseLoginFragment"
-        android:name="com.albrivas.broadcastbottom.ui.login.choose.ChooseLoginFragment"
+        android:name="com.albrivas.broadcastbottom.ui.login.choose.ChooseLoginView"
         android:label="fragment_choose_login"
         tools:layout="@layout/fragment_choose_login">
         <action
