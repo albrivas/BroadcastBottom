@@ -1,16 +1,15 @@
 package com.albrivas.broadcastbottom.ui.login.choose
 
 import androidx.activity.result.IntentSenderRequest
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.albrivas.broadcastbottom.data.analytics.LoginTracking
 import com.albrivas.broadcastbottom.usescases.login.GetGoogleIntentSenderUseCase
 import com.albrivas.broadcastbottom.usescases.login.LoginFirebaseUseCase
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ChooseLoginViewModel(
@@ -19,8 +18,8 @@ class ChooseLoginViewModel(
     private val analytics: LoginTracking,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(UiState())
-    val state: StateFlow<UiState> get() = _state
+    var state by mutableStateOf(UiState())
+        private set
 
     fun prepareGoogleLogin() {
         trackerLogin()
@@ -38,11 +37,11 @@ class ChooseLoginViewModel(
     }
 
     private fun onSuccessIntent(intent: IntentSenderRequest) {
-        _state.update { it.copy(intentSenderRequest = intent) }
+        state = state.copy(intentSenderRequest = intent)
     }
 
     private fun onError(exception: Exception) {
-        _state.update { it.copy(loginError = exception.message) }
+        state = state.copy(loginError = exception.message)
     }
 
     private fun trackerLogin() {

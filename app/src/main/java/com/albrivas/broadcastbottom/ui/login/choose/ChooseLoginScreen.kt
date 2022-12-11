@@ -1,17 +1,12 @@
 package com.albrivas.broadcastbottom.ui.login.choose
 
-import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -25,62 +20,31 @@ import androidx.navigation.fragment.findNavController
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.common.base.BaseFragment
 import com.albrivas.broadcastbottom.common.composeView
-import com.albrivas.broadcastbottom.common.launchAndCollect
 import com.albrivas.uikit.button.ButtonChooseLogin
 import com.albrivas.uikit.button.LoginTypeModel
 import com.albrivas.uikit.text.LabelLinkText
 import com.albrivas.uikit.text.TitleText
 import com.google.android.gms.auth.api.identity.SignInClient
 import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ChooseLoginView : BaseFragment() {
 
-    private val viewModel: ChooseLoginViewModel by lifecycleScope.viewModel(this)
+class ChooseLoginScreen : BaseFragment() {
+
     private lateinit var navController: NavController
-
-    private val oneTapClient by inject<SignInClient>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = composeView { ChooseLoginView() }
-    
-    private fun navigateToSignUp() {
-        val action = ChooseLoginViewDirections.actionChooseLoginFragmentToSignUpFragment()
-        navController.navigate(action)
-    }
 
-    private fun navigateToSignIn() {
-        val action = ChooseLoginViewDirections.actionChooseLoginFragmentToLoginFragment()
-        navController.navigate(action)
-    }
 
     @Composable
-    private fun ObserversState(
-        launcher: ManagedActivityResultLauncher<IntentSenderRequest, ActivityResult>
-    ) {
-        viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
-            state.intentSenderRequest?.let {
-                launcher.launch(it)
-            }
+    private fun ChooseLoginView(viewModel: ChooseLoginViewModel = getViewModel()) {
+        val oneTapClient by inject<SignInClient>()
 
-            state.loginError?.let { message ->
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                viewModel.initUiState(state.copy(loginError = null))
-            }
-        }
-    }
-
-    @Composable
-    private fun Navigation() {
-        navController = findNavController()
-    }
-
-    @SuppressLint("NotConstructor")
-    @Composable
-    private fun ChooseLoginView() {
+        val appState = rememberChooseLoginState(navController = findNavController())
         val resultLauncherGoogle =
             rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
@@ -91,8 +55,16 @@ class ChooseLoginView : BaseFragment() {
                 }
             }
 
-        ObserversState(resultLauncherGoogle)
-        Navigation()
+        with(viewModel) {
+            state.loginError?.let {
+                viewModel.initUiState(state = this.state.copy(loginError = null))
+            }
+
+            state.intentSenderRequest?.let {
+                resultLauncherGoogle.launch(it)
+            }
+        }
+
 
         Column(
             modifier = Modifier
@@ -112,7 +84,7 @@ class ChooseLoginView : BaseFragment() {
                 type = LoginTypeModel.USER_PASS,
                 textButton = R.string.choose_user_email
             ) {
-                navigateToSignIn()
+                appState.navigateToSignIn()
             }
             Spacer(Modifier.size(size = 16.dp))
             ButtonChooseLogin(
@@ -130,7 +102,7 @@ class ChooseLoginView : BaseFragment() {
             }
             Spacer(Modifier.size(size = 36.dp))
             LabelLinkText(text = R.string.label_login) {
-                navigateToSignUp()
+                appState.navigateToSignUp()
             }
         }
     }
