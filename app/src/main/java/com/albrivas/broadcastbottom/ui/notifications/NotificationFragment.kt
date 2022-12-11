@@ -13,14 +13,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.albrivas.broadcastbottom.databinding.FragmentNotificationBinding
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
 
 class NotificationFragment : Fragment() {
 
     private lateinit var binding: FragmentNotificationBinding
-    private val viewModel: NotificationViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: NotificationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

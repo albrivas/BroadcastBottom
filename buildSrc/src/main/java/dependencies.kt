@@ -31,6 +31,8 @@ object Libs {
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
             const val activity = "androidx.activity:activity-compose:1.6.1"
             const val preview = "androidx.compose.ui:ui-tooling-preview:1.3.1"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+            const val navigation = "androidx.navigation:navigation-compose:2.5.1"
         }
 
         object Navigation {
@@ -130,9 +132,8 @@ object Libs {
 
     object Koin {
         private const val version = "2.1.5"
-        const val koin = "org.koin:koin-android:$version"
-        const val koinScope = "org.koin:koin-androidx-scope:$version"
-        const val koinVM = "org.koin:koin-androidx-viewmodel:$version"
-        const val koinFragment = "org.koin:koin-androidx-fragment:$version"
+        const val compose = "io.insert-koin:koin-androidx-compose:3.3.0"
+        const val core = "io.insert-koin:koin-core:3.2.0"
+        const val main = "io.insert-koin:koin-android:3.3.0"
     }
 }

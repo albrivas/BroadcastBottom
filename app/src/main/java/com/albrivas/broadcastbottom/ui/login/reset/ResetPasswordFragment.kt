@@ -23,13 +23,13 @@ import com.albrivas.broadcastbottom.databinding.FragmentResetPasswordBinding
 import com.albrivas.broadcastbottom.domain.model.FieldType
 import com.albrivas.broadcastbottom.domain.model.ValidatorField
 import com.albrivas.broadcastbottom.ui.login.viewmodel.LoginViewModel
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class ResetPasswordFragment : BaseFragment() {
 
     private lateinit var binding: FragmentResetPasswordBinding
-    private val viewModel: LoginViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: LoginViewModel by viewModel()
     private lateinit var navController: NavController
 
     override fun onCreateView(

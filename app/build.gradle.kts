@@ -1,4 +1,3 @@
-import com.android.build.api.dsl.ApplicationBuildType
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
@@ -108,10 +107,9 @@ dependencies {
     implementation(Libs.AndroidX.coroutines)
     implementation(Libs.AndroidX.coroutinesGoogleServices)
 
-    implementation(Libs.Koin.koin)
-    implementation(Libs.Koin.koinVM)
-    implementation(Libs.Koin.koinFragment)
-    implementation(Libs.Koin.koinScope)
+    implementation(Libs.Koin.compose)
+    implementation(Libs.Koin.core)
+    implementation(Libs.Koin.main)
 
     implementation(Libs.GoogleService.services)
 
@@ -146,6 +144,8 @@ dependencies {
     implementation(Libs.AndroidX.Compose.material3)
     implementation(Libs.AndroidX.Compose.activity)
     implementation(Libs.AndroidX.Compose.preview)
+    implementation(Libs.AndroidX.Compose.viewModel)
+    implementation(Libs.AndroidX.Compose.navigation)
     androidTestImplementation(Libs.Test.Compose.uiTest)
     debugImplementation(Libs.Test.Compose.uiTooling)
     debugImplementation(Libs.Test.Compose.manifest)

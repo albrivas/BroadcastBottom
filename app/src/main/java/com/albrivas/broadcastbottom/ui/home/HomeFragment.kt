@@ -14,12 +14,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.albrivas.broadcastbottom.databinding.FragmentHomeBinding
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(

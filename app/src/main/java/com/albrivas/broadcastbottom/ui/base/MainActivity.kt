@@ -24,14 +24,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.albrivas.broadcastbottom.R
 import com.albrivas.broadcastbottom.databinding.ActivityMainBinding
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private val viewModel: MainViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: MainViewModel by viewModel()
     private var countNotification = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

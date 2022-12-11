@@ -29,8 +29,7 @@ import com.albrivas.broadcastbottom.databinding.AlertDialogProfileInformationBin
 import com.albrivas.broadcastbottom.databinding.FragmentProfileBinding
 import com.albrivas.broadcastbottom.domain.model.User
 import com.albrivas.broadcastbottom.ui.profile.ProfileViewModel.UiModel.*
-import org.koin.androidx.scope.lifecycleScope
-import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class ProfileFragment : BaseFragment() {
@@ -39,7 +38,7 @@ class ProfileFragment : BaseFragment() {
         private const val PICK_IMAGE = 100
     }
 
-    private val viewModel: ProfileViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: ProfileViewModel by viewModel()
     private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
